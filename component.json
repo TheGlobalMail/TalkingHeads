@@ -1,0 +1,19 @@
+{
+  "name": "talking-heads",
+  "description": "Talking Heads",
+  "author": "Andrew Cobby <andrew.cobby@theglobalmail.org>",
+  "version": "0.0.1",
+  "dependencies": {
+    "backbone": "~0.9.2",
+    "jquery": "~1.8.2",
+    "handlebars": "1.0.0-rc.1",
+    "backbone.mutators": "0.3.0",
+    "marionette": "1.0.0-beta5",
+    "lodash": "git://github.com/bestiejs/lodash.git#0.9.2",
+    "tgm-bootstrap": "git@github.com:TheGlobalMail/tgm-bootstrap.git#0.0.2",
+    "bootstrap-datepicker": "git://github.com/eternicode/bootstrap-datepicker.git",
+    "moment": "git://github.com/timrwood/moment.git",
+    "select2": "latest",
+    "d3": "latest"
+  }
+}
