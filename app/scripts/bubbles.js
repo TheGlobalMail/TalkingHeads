@@ -10,8 +10,8 @@
     });
 
     chart = new BubbleChart(document.getElementById('main'), members, {
-      width: document.width * 0.5,
-      height: document.height * 0.5
+      width: document.width,
+      height: document.height
     });
 
     chart.render();
@@ -33,13 +33,13 @@
       // dampens the effects of gravity
       // descresing this will slow down the velocity
       // of the bubbles as they're finding their resting place
-      damper: 0.1,
+      damper: 0.05,
 
       // lower values make the bubbles move around smoother
-      jitter: 0.4,
+      jitter: 0.3,
 
       // smallest bubble in pixels
-      minimumBubbleSize: 50,
+      minimumBubbleSize: 40,
 
       // largest bubble in pixels
       maximumBubbleSize: 140,
@@ -50,7 +50,7 @@
 
       // Affect minimum distance between bubbles (even during collision detection)
       // 0 is neatly touching, negative values will make bubbles overlap
-      collisionPadding: 0,
+      collisionPadding: 2,
 
       // Max number of bubbles to show in the chart
       bubblesToShow: 50,

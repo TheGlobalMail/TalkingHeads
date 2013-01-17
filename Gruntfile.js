@@ -56,7 +56,7 @@ module.exports = function( grunt ) {
     // default watch configuration
     watch: {
       recess: {
-        files: ['app/styles/**/*.less'],
+        files: ['app/styles/*.less'],
         tasks: 'recess reload'
       },
       // handlebars: {
@@ -67,9 +67,9 @@ module.exports = function( grunt ) {
       // },
       reload: {
         files: [
-          'app/*.html',
-          'app/styles/**/*.css',
-          'app/**/*.js'
+          'app/index.html',
+          'app/styles/*.css',
+          'app/*.js'
         ],
         tasks: 'lint reload'
       }
