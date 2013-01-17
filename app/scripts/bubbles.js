@@ -1,7 +1,7 @@
 (function(d3, $, _) {
   'use strict';
 
-  var promise = $.get('http://politalk-api.herokuapp.com/api/members');
+  var promise = $.getJSON('http://politalk-api.herokuapp.com/api/members');
   var chart;
 
   promise.done(function(members) {
@@ -10,15 +10,15 @@
     });
 
     chart = new BubbleChart(document.getElementById('main'), members, {
-      width: document.width,
-      height: document.height
+      width: $(window).width(),
+      height: $(window).height()
     });
 
     chart.render();
   });
 
   var BubbleChart = function(container, data, options) {
-    _.bindAll(this, '_collide');
+    _.bindAll(this, '_collide', 'gravity');
     this.options = _.extend({}, this.defaults, options);
     this.data    = data;
     this.$el     = $(container).addClass('stage');
@@ -38,11 +38,12 @@
       // lower values make the bubbles move around smoother
       jitter: 0.3,
 
+
       // smallest bubble in pixels
       minimumBubbleSize: 40,
 
       // largest bubble in pixels
-      maximumBubbleSize: 140,
+      maximumBubbleSize: 130,
 
       // manipulate the scale at which the talk duration
       // is convert to bubble radius size, 1 in linear
@@ -53,7 +54,7 @@
       collisionPadding: 2,
 
       // Max number of bubbles to show in the chart
-      bubblesToShow: 50,
+      bubblesToShow: 140,
 
       // visualtion size
       width: 400,
@@ -84,6 +85,7 @@
       _.each(this.data, function(d) {
         d.radius = this.durationToRadiusScale(d.duration);
         d.forceR = d.radius / 2;
+        d.image = d.image || '';
       }, this);
     },
 
@@ -97,8 +99,8 @@
       var alphaY = alpha;
 
       return function(d) {
-        d.x += (centerX - d.x) * alphaX;
-        d.y += (centerY - d.y) * alphaY;
+        d.x += (centerX - (d.x || 0)) * alphaX;
+        d.y += (centerY - (d.y || 0)) * alphaY;
       };
     },
 
@@ -108,23 +110,23 @@
     _collide: function(d) {
       _.each(this.data, function(d2) {
         if (d !== d2) {
-        var x = d.x - d2.x;
-        var y = d.y - d2.y;
-        var distance = Math.sqrt(x*x + y*y);
-        var minimumDistance = d.forceR + d2.forceR + this.options.collisionPadding;
+          var x = d.x - d2.x;
+          var y = d.y - d2.y;
+          var distance = Math.sqrt(x*x + y*y);
+          var minimumDistance = d.forceR + d2.forceR + this.options.collisionPadding;
 
 
-        if (distance < minimumDistance) {
-          distance = (distance - minimumDistance) / distance * this.options.jitter;
-          var moveX = x * distance;
-          var moveY = y * distance;
+          if (distance < minimumDistance) {
+            distance = (distance - minimumDistance) / distance * this.options.jitter;
+            var moveX = x * distance;
+            var moveY = y * distance;
 
-          d.x -= moveX;
-          d.y -= moveY;
-          d2.x += moveX;
-          d2.y += moveY;
+            d.x -= moveX;
+            d.y -= moveY;
+            d2.x += moveX;
+            d2.y += moveY;
+          }
         }
-      }
       }, this);
     },
 
@@ -145,8 +147,8 @@
         .size([this.options.width, this.options.height]);
 
       this.$el
-        .height(this.options.width)
-        .width(this.options.width)
+        .height(this.options.width + 'px')
+        .width(this.options.width + 'px')
         .css('overflow', 'hidden');
 
       this.processData();
@@ -156,15 +158,19 @@
       this._beforeRender();
       var div = d3.select(this.$el[0]);
 
-      this.bubbles = div.selectAll('div.bubble')
+      this.bubbles = div.selectAll('a.bubble')
         .data(this.data)
-        .enter().append('div')
+        .enter().append('a')
           .attr('class', 'bubble')
+          .attr('title', function(d) { return d.speaker; })
+          .attr('rel', 'tooltip')
           .style({
             width: function(d) { return d.radius + 'px'; },
             height: function(d) { return d.radius + 'px'; },
-            'background-image': function(d) { return 'url(' + d.image + ')'; }
+            'background-image': function(d) { return 'url(' + d.image.replace('.jpg', '_full.jpg') + ')'; }
           });
+
+      this.$el.find('[rel=tooltip]').tooltip();
 
       this.force
         .start()
