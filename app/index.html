@@ -21,8 +21,43 @@
   <!-- endbuild -->
 </head>
 <body>
-  <div id="main"></div>
-  <div id="bowers-power"></div>
+  <header class="navbar">
+    <div class="tgm-strip">
+      <a href="http:///www.theglobalmail.org" class="tgm">The Global Mail - Back to homepage</a>
+
+      <div class="icons">
+        <a class="about" href="#" data-target="#about-tool-modal" data-toggle="modal">About</a>
+        <a class="share popover-link carousel-sticky-popover-link" href="javascript:void(0)"><span class="text">share</span></a>
+      </div>
+    </div>
+  </header>
+
+  <div id="main" role="main">
+    <div class="top">
+      <div class="container">
+        <div id="bubble-chart"></div>
+
+        <div class="row">
+          <div class="span12 title">
+            <h1>Talking Heads</h1>
+            <p>
+              <strong>We could also have a sub-head that helps explain or <a href="#">links to a story</a>.</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="span4 chart-modes">
+            <ul>
+              <li>Most Vocal</li>
+              <li>Least Vocal</li>
+              <li>Most Interjections</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!--[if lt IE 7]>
   <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
@@ -35,7 +70,6 @@
   <script src="components/backbone/backbone.js"></script>
   <script src="components/bootstrap/js/bootstrap-tooltip.js"></script>
   <script src="scripts/bubbles.js"></script>
-  <script src="scripts/bowers-power.js"></script>
   <!-- endbuild -->
 </body>
 </html>

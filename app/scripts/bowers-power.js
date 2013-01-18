@@ -39,6 +39,12 @@
       });
     },
 
+    serializeData: function() {
+      var data = this.model.toJSON();
+      data.myVariable = this.myVariable;
+      return data;
+    },
+
     _hideBowersPower: function() {
       _.each(this.$bubbles, function(bubble) {
         var $bubble = $(bubble);

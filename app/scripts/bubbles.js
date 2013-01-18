@@ -9,7 +9,7 @@
       return -(a.duration - b.duration);
     });
 
-    chart = new BubbleChart(document.getElementById('main'), members, {
+    chart = new BubbleChart(document.getElementById('bubble-chart'), members, {
       width: $(window).width(),
       height: $(window).height()
     });
@@ -22,6 +22,9 @@
     this.options = _.extend({}, this.defaults, options);
     this.data    = data;
     this.$el     = $(container).addClass('stage');
+
+    this.set('height', this.$el.height())
+        .set('width', this.$el.width());
 
     this.force = d3.layout.force().gravity(0).charge(0);
     this.durationToRadiusScale = d3.scale.pow();
@@ -38,7 +41,6 @@
       // lower values make the bubbles move around smoother
       jitter: 0.3,
 
-
       // smallest bubble in pixels
       minimumBubbleSize: 40,
 
@@ -54,11 +56,7 @@
       collisionPadding: 2,
 
       // Max number of bubbles to show in the chart
-      bubblesToShow: 140,
-
-      // visualtion size
-      width: 400,
-      height: 400
+      bubblesToShow: 50
     },
 
     // set option
@@ -96,7 +94,7 @@
       var centerY = this.options.height / 2;
 
       var alphaX = alpha;
-      var alphaY = alpha;
+      var alphaY = alpha / 1.3; // favor Y axis a tad
 
       return function(d) {
         d.x += (centerX - (d.x || 0)) * alphaX;
@@ -148,8 +146,7 @@
 
       this.$el
         .height(this.options.width + 'px')
-        .width(this.options.width + 'px')
-        .css('overflow', 'hidden');
+        .width(this.options.width + 'px');
 
       this.processData();
     },
@@ -185,7 +182,7 @@
         .each(this._collide)
         .style({
           left: function(d) { return (d.x - d.forceR) + 'px'; },
-          top: function(d) { return (d.y - d.forceR) + 'px'; }
+          top: function(d) { return (d.y - d.forceR + 20) + 'px'; }
         });
     }
 

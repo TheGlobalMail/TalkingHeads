@@ -69,7 +69,7 @@ module.exports = function( grunt ) {
         files: [
           'app/index.html',
           'app/styles/*.css',
-          'app/*.js'
+          'app/scripts/*.js'
         ],
         tasks: 'lint reload'
       }

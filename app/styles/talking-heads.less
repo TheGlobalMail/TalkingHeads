@@ -1,0 +1,43 @@
+* { position: relative; }
+
+.top {
+  background: #ff835e url('/images/orange-dots.png') 0 0 repeat;
+  color: @white;
+
+  .title {
+    h1 {
+      font-family: @sansFontFamily;
+      .font-size(90);
+      color: transparent;
+      background-color: #888;
+      .background-clip(text);
+      text-shadow: 0 1px 1px rgba(255, 255, 255, 0.9);
+    }
+
+    p strong {
+      display: block;
+      width: 400px;
+      line-height: 1.3;
+      .font-size(22);
+      font-weight: 200;
+    }
+  }
+}
+
+.navbar {
+  margin: 0;
+
+  .tgm-strip {
+    .tgm {
+      background-size: contain;
+      margin-left: 20px;
+    }
+
+    .icons {
+      display: block;
+      margin-right: 20px;
+    }
+  }
+}
+
+@import "bubble-chart.less";
