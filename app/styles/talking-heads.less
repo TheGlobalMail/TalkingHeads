@@ -4,14 +4,26 @@
   background: #ff835e url('/images/orange-dots.png') 0 0 repeat;
   color: @white;
 
+  .container {
+    height: 830px;
+  }
+
   .title {
+    margin-top: 40px;
     h1 {
       font-family: @sansFontFamily;
       .font-size(90);
-      color: transparent;
+      font-weight: 800;
+      color: white;
       background-color: #888;
       .background-clip(text);
-      text-shadow: 0 1px 1px rgba(255, 255, 255, 0.9);
+      letter-spacing: -6px;
+      text-shadow: 0 -1px 0 rgba(0,0,0,0.4);
+    }
+
+    a {
+      color: white;
+      text-decoration: underline;
     }
 
     p strong {
