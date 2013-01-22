@@ -192,17 +192,18 @@
               background-position: 0 -192px;
             }
           }
+
           &:hover {
             background: #ffede7;
           }
+        }
 
-          &:first-child:hover {
-            .border-top-radius(@border-radius);
-          }
+        &:first-child a:hover {
+          .border-top-radius(@border-radius);
+        }
 
-          &:last-child:hover {
-            .border-bottom-radius(@border-radius);
-          }
+        &:last-child a:hover {
+          .border-bottom-radius(@border-radius);
         }
       }
     }
