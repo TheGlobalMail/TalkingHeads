@@ -8,7 +8,7 @@
     this.setupEvents();
     this.$button = this.$el.find('.filter-item');
     this.$selected = this.$el.find('[aria-selected]');
-    this._update();
+    this._update(true);
   };
 
   Selector.prototype = {
@@ -23,10 +23,10 @@
     },
 
     _getValue: function(el) {
-      return $(el).data('value') || $(el).text();
+      return el.data('value') || el.text();
     },
 
-    _update: function() {
+    _update: function(silent) {
       if (!this.$selected) {
         return false;
       }
@@ -36,14 +36,21 @@
       this.$selected.attr('aria-selected', true);
       this.$button.text(this.value);
 
-      this.$el.trigger('dropdown:change', [this.value, this.$selected]);
+      if (!silent) {
+        this.$el.trigger('dropdown:change', [this.value, this.$selected]);
+      }
     }
 
   };
 
-  $('.dropdown-filter').each(function() {
-    console.log(this);
-    new Selector(this);
-  });
+  $.fn.selector = function() {
+    this.each(function() {
+      new Selector(this);
+    });
+
+    return this;
+  };
+
+  $.fn.selector.Constructor = Selector;
 
 }(jQuery, _));
