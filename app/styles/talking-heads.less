@@ -54,6 +54,32 @@
 
 @border-color: rgba(255,255,255,0.2);
 
+.filter-item {
+  display: block;
+  font-weight: 600;
+  .font-size(14);
+  text-transform: uppercase;
+  color: #fff;
+  padding: 10px;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    text-decoration: underline;
+  }
+}
+
+.filter-item-icon {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 10px;
+  top: 9px;
+  background: url(/images/icons.png) no-repeat transparent;
+  width: 23px;
+  height: 23px;
+  overflow: hidden;
+}
+
 .chart-modes {
   border: 1px solid @border-color;
   .border-radius(8px);
@@ -67,8 +93,11 @@
   li {
     list-style: none;
     border-bottom: 1px solid @border-color;
-    padding: 10px;
     cursor: pointer;
+
+    a {
+      .filter-item;
+    }
 
     &:first-child {
       .border-top-radius(6px);
@@ -79,33 +108,8 @@
       .border-bottom-radius(6px);
     }
 
-    a {
-      display: block;
-      .font-size(14);
-      font-weight: 600;
-      text-transform: uppercase;
-      width: 200px;
-      color: white;
-
-      &:hover {
-        text-decoration: none;
-      }
-    }
-
-    &:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-      }
-
     &:after {
-      content: '';
-      display: block;
-      position: absolute;
-      right: 10px;
-      top: 9px;
-      background: url(/images/icons.png) no-repeat transparent;
-      width: 23px;
-      height: 23px;
-      overflow: hidden;
+      .filter-item-icon;
     }
 
     &.most-vocal:after {
@@ -118,6 +122,56 @@
 
     &.most-interjections:after {
       background-position: 0 -48px;
+    }
+  }
+}
+
+.chart-filters {
+  margin-top: 20px;
+
+  h3 {
+    .font-size(12);
+    text-transform: uppercase;
+    margin-left: 10px;
+  }
+
+  .dropdown-filter {
+    margin: 5px 0;
+  }
+
+  .dropdown {
+    // dropdown button
+    .filter-item {
+      border: 1px solid @border-color;
+      .border-radius(8px);
+
+      &:after {
+        .filter-item-icon;
+        background-position: 0 -74px;
+      }
+
+      &:hover {
+        color: white;
+        text-decoration: none;
+      }
+    }
+
+    .dropdown-menu {
+      a {
+        display: block;
+
+        // selected item in dropdown list
+        &[aria-selected] {
+          background-color: #efefef;
+        }
+      }
+    }
+  }
+
+  // dropdown open state
+  .dropdown.open {
+    .filter-item {
+      .border-bottom-radius(0);
     }
   }
 }

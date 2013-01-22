@@ -17,7 +17,7 @@
     _.bindAll(this, '_collide', 'gravity');
     this.options = _.extend({}, this.defaults, options);
     this.data    = data;
-    this.$el     = $(container).addClass('stage');
+    this.$el     = $(container).addClass('stage').attr('role', 'list');
 
     this.set('height', this.$el.height())
         .set('width', this.$el.width());
@@ -73,8 +73,7 @@
 
     // return the value off the data object for use in the chart
     getValue: function(d) {
-      return (d.speeches + d.interjections) *
-       d.duration;
+      return d.duration;
     },
 
     // do a bit of fiddling with the data to get it
@@ -164,9 +163,12 @@
       this.bubbles = div.selectAll('a.bubble')
         .data(this.data)
         .enter().append('a')
-          .attr('class', 'bubble')
-          .attr('title', function(d) { return d.speaker; })
-          .attr('rel', 'tooltip')
+          .attr({
+            'class': 'bubble',
+            role: 'listitem',
+            rel: 'tooltip',
+            title: function(d) { return d.speaker; }
+          })
           .style({
             width: function(d) { return d.radius + 'px'; },
             height: function(d) { return d.radius + 'px'; },
