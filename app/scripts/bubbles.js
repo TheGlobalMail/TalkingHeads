@@ -5,10 +5,6 @@
   var chart;
 
   promise.done(function(members) {
-    members.sort(function(a, b) {
-      return -(a.duration - b.duration);
-    });
-
     chart = new BubbleChart(document.getElementById('bubble-chart'), members, {
       width: $(window).width(),
       height: $(window).height()
@@ -27,7 +23,7 @@
         .set('width', this.$el.width());
 
     this.force = d3.layout.force().gravity(0).charge(0);
-    this.durationToRadiusScale = d3.scale.pow();
+    this.dataToRadiusScale = d3.scale.pow();
   };
 
   BubbleChart.prototype = {
@@ -47,9 +43,9 @@
       // largest bubble in pixels
       maximumBubbleSize: 130,
 
-      // manipulate the scale at which the talk duration
-      // is convert to bubble radius size, 1 in linear
-      durationToRadiusFactor: 0.9,
+      // manipulate the scale at which the data value
+      // is converted to bubble radius size, 1 in linear
+      dataToRadiusFactor: 0.9,
 
       // Affect minimum distance between bubbles (even during collision detection)
       // 0 is neatly touching, negative values will make bubbles overlap
@@ -75,13 +71,23 @@
       this.processData();
     },
 
+    // return the value off the data object for use in the chart
+    getValue: function(d) {
+      return (d.speeches + d.interjections) *
+       d.duration;
+    },
+
     // do a bit of fiddling with the data to get it
     // ready for bubblisationing
     processData: function() {
+      this.data.sort(_.bind(function(a, b) {
+        return -(this.getValue(a) - this.getValue(b));
+      }, this));
+
       this.data = this.data.slice(0, this.options.bubblesToShow);
 
       _.each(this.data, function(d) {
-        d.radius = this.durationToRadiusScale(d.duration);
+        d.radius = this.dataToRadiusScale(this.getValue(d));
         d.forceR = d.radius / 2;
         d.image = d.image || '';
       }, this);
@@ -129,11 +135,11 @@
     },
 
     _beforeRender: function() {
-      this.durationToRadiusScale
-        .exponent(this.options.durationToRadiusFactor)
+      this.dataToRadiusScale
+        .exponent(this.options.dataToRadiusFactor)
         .domain([
-          this.data[this.options.bubblesToShow-1].duration, // lower duration
-          this.data[0].duration // highest duration
+          this.getValue(this.data[this.options.bubblesToShow-1]), // lowest value
+          this.getValue(this.data[0]) // highest value
         ])
         .range([
           this.options.minimumBubbleSize,
