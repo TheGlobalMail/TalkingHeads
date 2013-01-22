@@ -185,10 +185,14 @@
 
           // selected item in dropdown list
           &[aria-selected] {
-            background-color: #ffede7;
+            // background-color: #ffede7;
+            &:after {
+              .filter-item-icon;
+              background-position: 0 -192px;
+            }
           }
           &:hover {
-            background: #ffcdbf;
+            background: #ffede7;
           }
         }
       }
