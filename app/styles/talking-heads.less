@@ -64,7 +64,7 @@
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    text-decoration: underline;
+    text-decoration: none;
   }
 }
 
@@ -82,7 +82,7 @@
 
 .chart-modes {
   border: 1px solid @border-color;
-  .border-radius(8px);
+  .border-radius(6px);
   margin-top: 40px;
   z-index: 1100;
 
@@ -100,12 +100,12 @@
     }
 
     &:first-child {
-      .border-top-radius(6px);
+      .border-top-radius(4px);
     }
 
     &:last-child {
       border-bottom: none;
-      .border-bottom-radius(6px);
+      .border-bottom-radius(4px);
     }
 
     &:after {
@@ -117,11 +117,11 @@
     }
 
     &.least-vocal:after {
-      background-position: 0 -23px;
+      background-position: 0 -38px;
     }
 
     &.most-interjections:after {
-      background-position: 0 -48px;
+      background-position: 0 -77px;
     }
   }
 }
@@ -136,18 +136,27 @@
   }
 
   .dropdown-filter {
-    margin: 5px 0;
+    margin: 0 0 10px 0;
   }
 
   .dropdown {
     // dropdown button
     .filter-item {
       border: 1px solid @border-color;
-      .border-radius(8px);
+      .border-radius(6px);
 
       &:after {
-        .filter-item-icon;
-        background-position: 0 -74px;
+        position: absolute;
+        top: 0px;
+        right: 10px;
+        display: block;
+        width: 28px;
+        height: 40px;
+        overflow: hidden;
+        background: url(/images/icons.png) no-repeat transparent;
+        background-position: 7px -109px;
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+        content: '';
       }
 
       &:hover {
@@ -157,12 +166,32 @@
     }
 
     .dropdown-menu {
+      top:-3px;
+      padding: 0;
+      .border-radius(6px);
+      overflow: hidden;
+      border: none;
+      // background-color: rgba(255,255,255,0.9);
+
       a {
         display: block;
 
         // selected item in dropdown list
         &[aria-selected] {
-          background-color: #efefef;
+          background-color: #ffede7;
+        }
+        &:hover {
+          background: #ffcdbf;
+        }
+      }
+      li {
+        a {
+          font-size: 14px;
+          font-weight: bold;
+          padding: 12px 10px;
+          color: #e0643f;
+          border-bottom: 1px solid #ffede7;
+          text-transform: uppercase;
         }
       }
     }
@@ -171,7 +200,7 @@
   // dropdown open state
   .dropdown.open {
     .filter-item {
-      .border-bottom-radius(0);
+      // .border-bottom-radius(0);
     }
   }
 }
