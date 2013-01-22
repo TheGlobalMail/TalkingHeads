@@ -166,21 +166,22 @@
     }
 
     .dropdown-menu {
+      @border-radius: 6px;
       top:-3px;
       padding: 0;
-      .border-radius(6px);
+      .border-radius(@border-radius);
       overflow: hidden;
       border: none;
-      // background-color: rgba(255,255,255,0.9);
+
       li {
         border-bottom: 1px solid #ffede7;
+
         a {
           display: block;
           font-size: 14px;
           font-weight: bold;
           padding: 12px 10px;
           color: #e0643f;
-
           text-transform: uppercase;
 
           // selected item in dropdown list
@@ -193,6 +194,14 @@
           }
           &:hover {
             background: #ffede7;
+          }
+
+          &:first-child:hover {
+            .border-top-radius(@border-radius);
+          }
+
+          &:last-child:hover {
+            .border-bottom-radius(@border-radius);
           }
         }
       }
