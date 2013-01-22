@@ -172,26 +172,24 @@
       overflow: hidden;
       border: none;
       // background-color: rgba(255,255,255,0.9);
-
-      a {
-        display: block;
-
-        // selected item in dropdown list
-        &[aria-selected] {
-          background-color: #ffede7;
-        }
-        &:hover {
-          background: #ffcdbf;
-        }
-      }
       li {
+        border-bottom: 1px solid #ffede7;
         a {
+          display: block;
           font-size: 14px;
           font-weight: bold;
           padding: 12px 10px;
           color: #e0643f;
-          border-bottom: 1px solid #ffede7;
+
           text-transform: uppercase;
+
+          // selected item in dropdown list
+          &[aria-selected] {
+            background-color: #ffede7;
+          }
+          &:hover {
+            background: #ffcdbf;
+          }
         }
       }
     }
