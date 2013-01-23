@@ -1,8 +1,8 @@
-(function($, Marionette) {
+(function(Marionette) {
   'use strict';
 
-  var TalkingHeads = new Backbone.Marionette.Application();
+  var TalkingHeads = new Marionette.Application();
+  TalkingHeads.views = {};
 
-
-  this.TalkingHeads = TalkingHeads;
-}($, Backbone.Marionette));
+  window.TalkingHeads = TalkingHeads;
+}(Backbone.Marionette));
