@@ -32,16 +32,16 @@
       // dampens the effects of gravity
       // descresing this will slow down the velocity
       // of the bubbles as they're finding their resting place
-      damper: 0.05,
+      damper: 0.035,
 
       // lower values make the bubbles move around smoother
-      jitter: 0.3,
+      jitter: 0.35,
 
       // smallest bubble in pixels
-      minimumBubbleSize: 40,
+      minimumBubbleSize: 35,
 
       // largest bubble in pixels
-      maximumBubbleSize: 130,
+      maximumBubbleSize: 140,
 
       // manipulate the scale at which the data value
       // is converted to bubble radius size, 1 in linear
@@ -49,7 +49,7 @@
 
       // Affect minimum distance between bubbles (even during collision detection)
       // 0 is neatly touching, negative values will make bubbles overlap
-      collisionPadding: 2,
+      collisionPadding: 3,
 
       // Max number of bubbles to show in the chart
       bubblesToShow: 50
