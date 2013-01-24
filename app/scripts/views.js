@@ -60,9 +60,29 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
       'change input': 'onChange'
     },
 
+    initialize: function() {
+      this.$labels = this.$('label');
+      this.updateActive();
+    },
+
+    updateActive: function() {
+      this.$labels.each(function() {
+        var $label = $(this);
+        var $checkbox = $label.find('input');
+        if ($checkbox[0].checked) {
+          $label.addClass('active');
+        } else {
+          $label.removeClass('active');
+        }
+      });
+    },
+
     onChange: function(e) {
-      TalkingHeads.vent.trigger('filter:party', e.currentTarget.value, e.currentTarget.checked);
+      var checkbox = e.currentTarget;
+      this.updateActive();
+      TalkingHeads.vent.trigger('filter:party', checkbox.value, checkbox.checked);
     }
+
   });
 
   TalkingHeads.addInitializer(function() {
