@@ -2,7 +2,7 @@
   'use strict';
 
   var BubbleChart = function(container, options) {
-    _.bindAll(this, '_collide', 'gravity', 'render', 'tick');
+    _.bindAll(this, '_collide', 'gravity', 'render', 'tick', 'getValue', 'getId');
     this.options = _.extend({}, this.defaults, options);
     this.$el     = $(container).addClass('stage').attr('role', 'list');
 
@@ -23,10 +23,10 @@
       // dampens the effects of gravity
       // descresing this will slow down the velocity
       // of the bubbles as they're finding their resting place
-      damper: 0.035,
+      damper: 0.055,
 
       // lower values make the bubbles move around smoother
-      jitter: 0.35,
+      jitter: 0.45,
 
       // smallest bubble in pixels
       minimumBubbleSize: 35,
@@ -54,6 +54,10 @@
 
     getValue: function(d) {
       return d[this.options.valueAttribute];
+    },
+
+    getId: function(d) {
+      return d.radius + this.options.valueAttribute + d.id;
     },
 
     // get option value
@@ -102,6 +106,7 @@
       var alphaY = alpha / 1.3; // favor Y axis a tad
 
       return function(d) {
+        if (!d.x) { console.log(d); }
         d.x += (centerX - (d.x || 0)) * alphaX;
         d.y += (centerY - (d.y || 0)) * alphaY;
       };
@@ -147,7 +152,7 @@
       this._beforeRender();
       var div = d3.select(this.$el[0]);
 
-      this.bubbles = div.selectAll('a.bubble').data(this.data, function(d) { return d.id; });
+      this.bubbles = div.selectAll('a.bubble').data(this.data, this.getId);
       this.bubbles.exit().remove();
       this.bubbles
         .enter().append('a')
@@ -172,11 +177,12 @@
       var dampenedAlpha = e.alpha * this.options.damper;
 
       this.bubbles
+        .call(this.force.drag)
         .each(this.gravity(dampenedAlpha))
         .each(this._collide)
         .style({
           left: function(d) { return (d.x - d.forceR) + 'px'; },
-          top: function(d) { return (d.y - d.forceR + 20) + 'px'; }
+          top: function(d) { return (d.y - d.forceR) + 'px'; }
         });
     }
 
