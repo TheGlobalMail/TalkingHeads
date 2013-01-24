@@ -35,6 +35,7 @@ body {
       line-height: 1.3;
       .font-size(22);
       font-weight: 200;
+      z-index: 1100;
     }
   }
 }
@@ -66,7 +67,6 @@ body {
   padding: 10px;
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
     text-decoration: none;
   }
 }
@@ -100,9 +100,14 @@ body {
     list-style: none;
     border-top: 1px solid @border-color;
     cursor: pointer;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      text-decoration: none;
+    }
 
     a {
       .filter-item;
+      .opacity(20);
     }
 
     &:first-child {
@@ -120,20 +125,30 @@ body {
 
     &.most-vocal:after {
       background-position: 0 2px;
+      .opacity(20);
     }
 
     &.least-vocal:after {
       background-position: 0 -38px;
+      .opacity(20);
     }
 
     &.most-interjections:after {
       background-position: 0 -77px;
+      .opacity(20);
+    }
+    &.active a,
+    &.most-vocal.active:after,
+    &.least-vocal.active:after,
+    &.most-interjections.active:after {
+      .opacity(100);
     }
   }
 }
 
 .chart-filters {
   margin-top: 20px;
+  z-index: 1100;
 
   h3 {
     .font-size(12);
@@ -143,6 +158,10 @@ body {
 
   .dropdown-filter {
     margin: 0 0 10px 0;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      text-decoration: none;
+    }
   }
 
   .dropdown {
@@ -219,12 +238,18 @@ body {
 
 .filter-party {
   margin-top: 10px;
+  z-index: 1100;
 }
 
 .boolean-filter {
   cursor: pointer;
   margin: 0;
   border-top: 1px solid @border-color;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+  }
 
   &:first-child {
     border-top: none;
