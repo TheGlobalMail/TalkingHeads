@@ -103,6 +103,7 @@ body {
 
     a {
       .filter-item;
+      .opacity(20);
     }
 
     &:first-child {
@@ -120,14 +121,20 @@ body {
 
     &.most-vocal:after {
       background-position: 0 2px;
+      .opacity(20);
     }
 
     &.least-vocal:after {
       background-position: 0 -38px;
+      .opacity(20);
     }
 
     &.most-interjections:after {
       background-position: 0 -77px;
+      .opacity(20);
+    }
+    .active a {
+      .opacity(100);
     }
   }
 }
