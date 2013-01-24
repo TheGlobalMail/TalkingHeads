@@ -32,83 +32,81 @@
     </div>
   </header>
 
-  <div id="main" role="main">
-    <div class="top">
-      <div class="container">
-        <div id="bubble-chart"></div>
+  <div id="main" role="main" class="top">
+    <div class="container">
+      <div id="bubble-chart"></div>
+
+      <div class="row">
+        <div class="span12 title">
+          <h1>Talking Heads</h1>
+          <p>
+            <strong>We could also have a sub-head that helps explain or <a href="#">links to a story</a>.</strong>
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div id="chart-modes" class="span3 filter-item-border">
+          <ul role="menu">
+            <li class="most-vocal"><a href="/most-vocal" role="menuitem">Most Vocal</a></li>
+            <li class="least-vocal"><a href="/least-vocal" role="menuitem">Least Vocal</a></li>
+            <li class="most-interjections"><a href="/most-interjections" role="menuitem">Most Interjections</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="chart-filters">
+        <div class="row">
+          <div class="span3"><h3>Filter By:</h3></div>
+        </div>
 
         <div class="row">
-          <div class="span12 title">
-            <h1>Talking Heads</h1>
-            <p>
-              <strong>We could also have a sub-head that helps explain or <a href="#">links to a story</a>.</strong>
-            </p>
+          <div class="span3">
+            <div id="filter-year" class="dropdown dropdown-filter" role="select" aria-label="Year">
+              <a href="#" id="filter-year-button" class="filter-item dropdown-toggle" aria-hidden data-toggle="dropdown" data-target="#">Year</a>
+              <ul class="dropdown-menu span3">
+                <li><a href="#" aria-selected>2012</a></li>
+                <li><a href="#">2011</a></li>
+                <li><a href="#">2010</a></li>
+                <li><a href="#">2009</a></li>
+                <li><a href="#">2008</a></li>
+                <li><a href="#">2007</a></li>
+                <li><a href="#">2006</a></li>
+              </ul>
+            </div>
           </div>
         </div>
 
         <div class="row">
-          <div class="span3 chart-modes filter-item-border">
-            <ul role="menu">
-              <li class="most-vocal"><a href="/most-vocal" role="menuitem">Most Vocal</a></li>
-              <li class="least-vocal"><a href="/least-vocal" role="menuitem">Least Vocal</a></li>
-              <li class="most-interjections"><a href="/most-interjections" role="menuitem">Most Interjections</a></li>
-            </ul>
+          <div class="span3">
+            <div id="filter-house" class="dropdown dropdown-filter" role="select" aria-label="House">
+              <a href="#" id="filter-house-button" class="filter-item dropdown-toggle" aria-hidden data-toggle="dropdown">House</a>
+              <ul class="dropdown-menu span3">
+                <li><a href="#" aria-selected>Both Houses</a></li>
+                <li><a href="#">House of Reps.</a></li>
+                <li><a href="#">Senate</a></li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div class="chart-filters">
-          <div class="row">
-            <div class="span3"><h3>Filter By:</h3></div>
-          </div>
+        <div class="row">
+          <div id="filter-party" class="span3 filter-party filter-item-border">
+            <label id="toggle-liberals" class="boolean-filter filter-item">
+              Liberals <input type="checkbox" value="Liberals" checked>
+            </label>
 
-          <div class="row">
-            <div class="span3">
-              <div id="filter-year" class="dropdown dropdown-filter" role="select" aria-label="Year">
-                <a href="#" id="filter-year-button" class="filter-item dropdown-toggle" aria-hidden data-toggle="dropdown" data-target="#">Year</a>
-                <ul class="dropdown-menu span3">
-                  <li><a href="#" aria-selected>2012</a></li>
-                  <li><a href="#">2011</a></li>
-                  <li><a href="#">2010</a></li>
-                  <li><a href="#">2009</a></li>
-                  <li><a href="#">2008</a></li>
-                  <li><a href="#">2007</a></li>
-                  <li><a href="#">2006</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
+            <label id="toggle-labor" class="boolean-filter filter-item">
+              Labor <input type="checkbox" value="Labor" checked>
+            </label>
 
-          <div class="row">
-            <div class="span3">
-              <div id="filter-house" class="dropdown dropdown-filter" role="select" aria-label="House">
-                <a href="#" id="filter-house-button" class="filter-item dropdown-toggle" aria-hidden data-toggle="dropdown">House</a>
-                <ul class="dropdown-menu span3">
-                  <li><a href="#" aria-selected>Both Houses</a></li>
-                  <li><a href="#">House of Reps.</a></li>
-                  <li><a href="#">Senate</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
+            <label id="toggle-greens" class="boolean-filter filter-item">
+              Greens <input type="checkbox" value="Greens" checked>
+            </label>
 
-          <div class="row">
-            <div id="filter-party" class="span3 filter-party filter-item-border">
-              <label id="toggle-liberals" class="boolean-filter filter-item">
-                Liberals <input type="checkbox" value="Liberals" checked>
-              </label>
-
-              <label id="toggle-labor" class="boolean-filter filter-item">
-                Labor <input type="checkbox" value="Labor" checked>
-              </label>
-
-              <label id="toggle-greens" class="boolean-filter filter-item">
-                Greens <input type="checkbox" value="Greens" checked>
-              </label>
-
-              <label id="toggle-independents" class="boolean-filter filter-item">
-                Independents <input type="checkbox" value="Independant">
-              </label>
-            </div>
+            <label id="toggle-independents" class="boolean-filter filter-item">
+              Independents <input type="checkbox" value="Independant">
+            </label>
           </div>
         </div>
       </div>
