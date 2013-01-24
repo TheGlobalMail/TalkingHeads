@@ -69,7 +69,7 @@ module.exports = function( grunt ) {
         files: [
           'app/index.html',
           'app/styles/*.css',
-          'app/scripts/*.js'
+          'app/scripts/**/*.js'
         ],
         tasks: 'lint reload'
       }
@@ -106,7 +106,9 @@ module.exports = function( grunt ) {
           _: true,
           $: true,
           d3: true,
-          Modernizr: true
+          Modernizr: true,
+          TalkingHeads: true,
+          BubbleChart: true
         }
       }
     },

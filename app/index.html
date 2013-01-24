@@ -14,10 +14,10 @@
 
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,800italic,400,800,700" rel="stylesheet" type="text/css">
   <!-- build:css styles/main.css -->
-  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="/styles/main.css">
   <!-- endbuild -->
   <!-- build:js scripts/head.js -->
-  <script src="scripts/modernizr.js"></script>
+  <script src="/scripts/modernizr.js"></script>
   <!-- endbuild -->
 </head>
 <body role="application">
@@ -47,7 +47,7 @@
         </div>
 
         <div class="row">
-          <div class="span3 chart-modes">
+          <div class="span3 chart-modes filter-item-border">
             <ul role="menu">
               <li class="most-vocal"><a href="/most-vocal" role="menuitem">Most Vocal</a></li>
               <li class="least-vocal"><a href="/least-vocal" role="menuitem">Least Vocal</a></li>
@@ -63,7 +63,7 @@
 
           <div class="row">
             <div class="span3">
-              <div class="filter-year dropdown dropdown-filter" role="select" aria-label="Year">
+              <div id="filter-year" class="dropdown dropdown-filter" role="select" aria-label="Year">
                 <a href="#" id="filter-year-button" class="filter-item dropdown-toggle" aria-hidden data-toggle="dropdown" data-target="#">Year</a>
                 <ul class="dropdown-menu span3">
                   <li><a href="#" aria-selected>2012</a></li>
@@ -80,7 +80,7 @@
 
           <div class="row">
             <div class="span3">
-              <div class="filter-house dropdown dropdown-filter" role="select" aria-label="House">
+              <div id="filter-house" class="dropdown dropdown-filter" role="select" aria-label="House">
                 <a href="#" id="filter-house-button" class="filter-item dropdown-toggle" aria-hidden data-toggle="dropdown">House</a>
                 <ul class="dropdown-menu span3">
                   <li><a href="#" aria-selected>Both Houses</a></li>
@@ -88,6 +88,26 @@
                   <li><a href="#">Senate</a></li>
                 </ul>
               </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div id="filter-party" class="span3 filter-party filter-item-border">
+              <label id="toggle-liberals" class="boolean-filter filter-item">
+                Liberals <input type="checkbox" value="Liberals" checked>
+              </label>
+
+              <label id="toggle-labor" class="boolean-filter filter-item">
+                Labor <input type="checkbox" value="Labor" checked>
+              </label>
+
+              <label id="toggle-greens" class="boolean-filter filter-item">
+                Greens <input type="checkbox" value="Greens" checked>
+              </label>
+
+              <label id="toggle-independents" class="boolean-filter filter-item">
+                Independents <input type="checkbox" value="Independant">
+              </label>
             </div>
           </div>
         </div>
@@ -100,14 +120,20 @@
   <![endif]-->
 
   <!-- build:js scripts/scripts.js -->
-  <script src="components/jquery/jquery.js"></script>
-  <script src="components/d3/d3.js"></script>
-  <script src="components/lodash/lodash.js"></script>
-  <script src="components/backbone/backbone.js"></script>
-  <script src="components/bootstrap/js/bootstrap-tooltip.js"></script>
-  <script src="components/bootstrap/js/bootstrap-dropdown.js"></script>
-  <script src="scripts/lib/bubble-chart.js"></script>
-  <script src="scripts/lib/selector.js"></script>
+  <script src="/components/jquery/jquery.js"></script>
+  <script src="/components/d3/d3.js"></script>
+  <script src="/components/lodash/lodash.js"></script>
+  <script src="/components/backbone/backbone.js"></script>
+  <script src="/components/marionette/lib/backbone.marionette.js"></script>
+  <script src="/components/bootstrap/js/bootstrap-tooltip.js"></script>
+  <script src="/components/bootstrap/js/bootstrap-dropdown.js"></script>
+  <script src="/scripts/lib/bubble-chart.js"></script>
+  <script src="/scripts/lib/selectr.js"></script>
+  <script src="/scripts/app.js"></script>
+  <script src="/scripts/models.js"></script>
+  <script src="/scripts/views.js"></script>
+  <script src="/scripts/router.js"></script>
+  <script src="/scripts/main.js"></script>
   <!-- endbuild -->
 </body>
 </html>
