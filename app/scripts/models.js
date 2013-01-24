@@ -42,7 +42,7 @@ TalkingHeads.module('Models', function(Models, TalkingHeads, Backbone) {
     },
 
     sortByMostInterjections: function() {
-      this.setSortBy('interjections', true)
+      this.setSortBy('interjections', true);
     },
 
     setSortBy: function(attribute, descending) {
@@ -52,7 +52,7 @@ TalkingHeads.module('Models', function(Models, TalkingHeads, Backbone) {
         } else {
           return model.get(attribute);
         }
-      }
+      };
       this.sortAttribute = attribute;
       this.sort();
     }
