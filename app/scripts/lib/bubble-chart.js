@@ -1,28 +1,19 @@
 (function(d3, $, _) {
   'use strict';
 
-  var promise = $.getJSON('http://politalk-api.herokuapp.com/api/members');
-  var chart;
-
-  promise.done(function(members) {
-    chart = new BubbleChart(document.getElementById('bubble-chart'), members, {
-      width: $(window).width(),
-      height: $(window).height()
-    });
-
-    chart.render();
-  });
-
-  var BubbleChart = function(container, data, options) {
-    _.bindAll(this, '_collide', 'gravity');
+  var BubbleChart = function(container, options) {
+    _.bindAll(this, '_collide', 'gravity', 'render', 'tick');
     this.options = _.extend({}, this.defaults, options);
-    this.data    = data;
     this.$el     = $(container).addClass('stage').attr('role', 'list');
 
     this.set('height', this.$el.height())
         .set('width', this.$el.width());
 
-    this.force = d3.layout.force().gravity(0).charge(0);
+    this.force = d3.layout.force()
+      .gravity(0)
+      .charge(0)
+      .on('tick', this.tick);
+
     this.dataToRadiusScale = d3.scale.pow();
   };
 
@@ -45,7 +36,7 @@
 
       // manipulate the scale at which the data value
       // is converted to bubble radius size, 1 in linear
-      dataToRadiusFactor: 0.9,
+      dataToRadiusFactor: 1,
 
       // Affect minimum distance between bubbles (even during collision detection)
       // 0 is neatly touching, negative values will make bubbles overlap
@@ -61,6 +52,10 @@
       return this;
     },
 
+    getValue: function(d) {
+      return d[this.options.valueAttribute];
+    },
+
     // get option value
     get: function(key) {
       return (key in this.options) && this.options[key];
@@ -69,21 +64,26 @@
     setData: function(data) {
       this.data = data;
       this.processData();
-    },
-
-    // return the value off the data object for use in the chart
-    getValue: function(d) {
-      return d.duration;
+      return this;
     },
 
     // do a bit of fiddling with the data to get it
     // ready for bubblisationing
     processData: function() {
-      this.data.sort(_.bind(function(a, b) {
-        return -(this.getValue(a) - this.getValue(b));
-      }, this));
-
       this.data = this.data.slice(0, this.options.bubblesToShow);
+
+      // now the data is sorted and truncated, figure out the size scale
+      this.dataToRadiusScale
+        .exponent(this.options.dataToRadiusFactor)
+        .domain([
+          // sorted descendingly, so last is lowest
+          this.getValue(_.last(this.data)), // lowest value
+          this.getValue(_.first(this.data)) // highest value
+        ])
+        .range([
+          this.options.minimumBubbleSize,
+          this.options.maximumBubbleSize
+        ]);
 
       _.each(this.data, function(d) {
         d.radius = this.dataToRadiusScale(this.getValue(d));
@@ -134,17 +134,6 @@
     },
 
     _beforeRender: function() {
-      this.dataToRadiusScale
-        .exponent(this.options.dataToRadiusFactor)
-        .domain([
-          this.getValue(this.data[this.options.bubblesToShow-1]), // lowest value
-          this.getValue(this.data[0]) // highest value
-        ])
-        .range([
-          this.options.minimumBubbleSize,
-          this.options.maximumBubbleSize
-        ]);
-
       this.force
         .nodes(this.data)
         .size([this.options.width, this.options.height]);
@@ -152,22 +141,21 @@
       this.$el
         .height(this.options.width + 'px')
         .width(this.options.width + 'px');
-
-      this.processData();
     },
 
     render: function() {
       this._beforeRender();
       var div = d3.select(this.$el[0]);
 
-      this.bubbles = div.selectAll('a.bubble')
-        .data(this.data)
+      this.bubbles = div.selectAll('a.bubble').data(this.data, function(d) { return d.id; });
+      this.bubbles.exit().remove();
+      this.bubbles
         .enter().append('a')
           .attr({
             'class': 'bubble',
             role: 'listitem',
             rel: 'tooltip',
-            title: function(d) { return d.speaker; }
+            title: function(d) { return d.first_name + ' ' + d.last_name; }
           })
           .style({
             width: function(d) { return d.radius + 'px'; },
@@ -177,9 +165,7 @@
 
       this.$el.find('[rel=tooltip]').tooltip();
 
-      this.force
-        .start()
-        .on('tick', _.bind(this.tick, this));
+      this.force.start();
     },
 
     tick: function(e) {
@@ -195,5 +181,7 @@
     }
 
   };
+
+  window.BubbleChart = BubbleChart;
 
 }(d3, jQuery, _));
