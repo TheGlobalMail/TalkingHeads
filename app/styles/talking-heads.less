@@ -148,7 +148,7 @@ body {
 
 .chart-filters {
   margin-top: 20px;
-  z-index: 1100;
+  z-index: 1200;
 
   h3 {
     .font-size(12);
@@ -244,12 +244,18 @@ body {
 .boolean-filter {
   cursor: pointer;
   margin: 0;
-  border-top: 1px solid @border-color;
+  border-top: 1px solid rgba(255,255,255,.9);
+  .opacity(20);
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
     text-decoration: none;
   }
+
+  &.active {
+      .opacity(100);
+      border-top: 1px solid @border-color;
+    }
 
   &:first-child {
     border-top: none;
