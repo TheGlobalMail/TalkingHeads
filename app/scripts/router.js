@@ -16,14 +16,17 @@ TalkingHeads.module('Router', function(Router, TalkingHeads) {
 
     mostVocal: function() {
       this.collection.sortByMostVocal();
+      TalkingHeads.vent.trigger('chartMode', 'most-vocal');
     },
 
     leastVocal: function() {
       this.collection.sortByLeastVocal();
+      TalkingHeads.vent.trigger('chartMode', 'least-vocal');
     },
 
     mostInterjections: function() {
       this.collection.sortByMostInterjections();
+      TalkingHeads.vent.trigger('chartMode', 'most-interjections');
     }
 
   });

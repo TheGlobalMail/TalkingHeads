@@ -17,6 +17,25 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
 
   });
 
+  Views.ChartMode = Backbone.View.extend({
+
+    initialize: function() {
+      this.listenTo(TalkingHeads.vent, 'chartMode', this.onChartMode, this);
+    },
+
+    onChartMode: function(mode) {
+      var $current = this.$('li.active');
+
+      if ($current.hasClass(mode)) {
+        return false;
+      }
+
+      $current.removeClass('active');
+      this.$('.' + mode).addClass('active');
+    }
+
+  });
+
 
   // Views for Year/House dropdown filters
   Views.DropdownFilter = Backbone.View.extend({
@@ -51,6 +70,8 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
       el: $('#bubble-chart'),
       collection: TalkingHeads.members
     });
+
+    new Views.ChartMode({ el: $('#chart-modes') });
 
     new Views.DropdownFilter({ el: $('#filter-year'), eventName: 'year' });
     new Views.DropdownFilter({ el: $('#filter-house'), eventName: 'house' });
