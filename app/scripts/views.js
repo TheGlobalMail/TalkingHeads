@@ -110,8 +110,15 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
 
     setFilters: function(filters) {
       this.$labels.each(function() {
-        var $checkbox = $(this).find('input');
-        $checkbox.prop('checked', _.contains(filters.party, $checkbox.val()));
+        var $label = $(this);
+        var $checkbox = $label.find('input');
+        var checked = _.contains(filters.party, $checkbox.val());
+        $checkbox.prop('checked', checked);
+        if (checked) {
+          $label.addClass('active')
+        } else {
+          $label.removeClass('active');
+        }
       });
     }
 
