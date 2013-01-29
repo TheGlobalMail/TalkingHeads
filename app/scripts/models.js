@@ -5,6 +5,12 @@ TalkingHeads.module('Models', function(Models, TalkingHeads, Backbone) {
 
     idAttribute: 'person_id',
 
+    mutators: {
+      name: function() {
+        return this.first_name + ' ' + this.last_name;
+      }
+    },
+
     initialize: function() {
       this.on('change:image', this.setFullImage);
     },

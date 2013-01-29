@@ -163,7 +163,7 @@
             'class': 'bubble',
             role: 'listitem',
             rel: 'tooltip',
-            title: function(d) { return d.first_name + ' ' + d.last_name; }
+            title: function(d) { return d.name; }
           })
           .style({
             width: function(d) { return d.radius + 'px'; },
