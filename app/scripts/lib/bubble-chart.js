@@ -2,7 +2,7 @@
   'use strict';
 
   var BubbleChart = function(container, options) {
-    _.bindAll(this, '_collide', 'gravity', 'render', 'tick', 'getValue', 'getId');
+    _.bindAll(this, '_collide', 'gravity', 'render', 'tick', 'getValue', 'getId', 'setBubblePosition');
     this.options = _.extend({}, this.defaults, options);
     this.$el     = $(container).addClass('stage').attr('role', 'list');
 
@@ -159,6 +159,33 @@
         .width(this.options.width + 'px');
     },
 
+    _setLeftAndTop: function(el, left, top) {
+      el.style.left = left;
+      el.style.top  = top;
+    },
+
+    _setTranslate3d: function(el, left, top) {
+      var translate = 'translate3d(' + left + ',' + top + ',0)';
+      el.style.webkitTransform = translate;
+      el.style.transform = translate;
+    },
+
+    setBubblePosition: function() {
+      var _setTranslate3d = this._setTranslate3d;
+      var _setLeftAndTop  = this._setLeftAndTop;
+
+      return function(d) {
+        var left = (d.x - d.forceR) + 'px';
+        var top  = (d.y - d.forceR) + 'px';
+
+        if (Modernizr.csstransforms3d) {
+          _setTranslate3d(this, left, top);
+        } else {
+          _setLeftAndTop(this, left, top);
+        }
+      }
+    },
+
     render: function() {
       this._beforeRender();
       var div = d3.select(this.$el[0]);
@@ -194,10 +221,7 @@
         .call(this.force.drag)
         .each(this.gravity(dampenedAlpha))
         .each(this._collide)
-        .style({
-          left: function(d) { return (d.x - d.forceR) + 'px'; },
-          top: function(d) { return (d.y - d.forceR) + 'px'; }
-        });
+        .each(this.setBubblePosition());
     }
 
   };
