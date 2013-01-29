@@ -12,6 +12,7 @@
     "lodash": "git://github.com/bestiejs/lodash.git#0.9.2",
     "tgm-bootstrap": "git@github.com:TheGlobalMail/tgm-bootstrap.git#0.1.8",
     "d3": "latest",
-    "marionette": "latest"
+    "marionette": "latest",
+    "cookie-monster": "latest"
   }
 }
