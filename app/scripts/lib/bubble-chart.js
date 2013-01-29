@@ -76,6 +76,10 @@
     processData: function() {
       this.data = this.data.slice(0, this.options.bubblesToShow);
 
+      if (this.data.length === 0) {
+        return this.allGone();
+      }
+
       // now the data is sorted and truncated, figure out the size scale
       this.dataToRadiusScale
         .exponent(this.options.dataToRadiusFactor)
@@ -92,8 +96,16 @@
       _.each(this.data, function(d) {
         d.radius = this.dataToRadiusScale(this.getValue(d));
         d.forceR = d.radius / 2;
-        d.image = d.image || '';
       }, this);
+    },
+
+    allGone: function() {
+      this.data = [{
+        radius: 300,
+        forceR: 150,
+        imageFull: '/images/all_gone.jpg',
+        name: 'Awww no!'
+      }];
     },
 
     // return a function the simulates gravity
