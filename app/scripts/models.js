@@ -8,15 +8,12 @@ TalkingHeads.module('Models', function(Models, TalkingHeads, Backbone) {
     mutators: {
       name: function() {
         return this.first_name + ' ' + this.last_name;
+      },
+
+      imageFull: function() {
+        this.image = this.image || '';
+        return this.image.replace('.jpg', '_full.jpg')
       }
-    },
-
-    initialize: function() {
-      this.on('change:image', this.setFullImage);
-    },
-
-    setFullImage: function(model, value) {
-      model.set('fullImage', value.replace('.jpg', '_full.jpg'));
     }
 
   });

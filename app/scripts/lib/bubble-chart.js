@@ -168,7 +168,7 @@
           .style({
             width: function(d) { return d.radius + 'px'; },
             height: function(d) { return d.radius + 'px'; },
-            'background-image': function(d) { return 'url(' + d.image.replace('.jpg', '_full.jpg') + ')'; }
+            'background-image': function(d) { return 'url(' + d.imageFull + ')'; }
           });
 
       this.$el.find('[rel=tooltip]').tooltip();
