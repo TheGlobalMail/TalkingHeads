@@ -40,6 +40,7 @@ TalkingHeads.module('Models', function(Models, TalkingHeads, Backbone) {
       Labor: ['Australian Labor Party'],
       Liberals: ['Liberal Party'],
       National: ['National Party'],
+      Greens: ['Australian Greens'],
       Other: [
         'Independent',
         'Country Liberal Party',
