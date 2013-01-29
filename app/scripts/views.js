@@ -5,9 +5,15 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
 
   Views.BubbleChart = Backbone.View.extend({
 
+    events: {
+      'click .bubble': 'showPopover'
+    },
+
     initialize: function() {
       this.bubbleChart = new BubbleChart(this.el);
       this.listenTo(this.collection, 'filter sort', this.render, this);
+      this.currentPopover = false;
+      this.popoverTemplate = _.template($('#member-popover-template').html());
     },
 
     render: function() {
@@ -15,6 +21,65 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
         .set('valueAttribute', this.collection.sortAttribute)
         .setData(this.collection.toJSON())
         .render();
+    },
+
+    _deactivate: function() {
+      this.$('.bubble.active').removeClass('active');
+      this.$el.removeClass('bubble-active');
+
+      if (this.currentPopover) {
+        this.currentPopover.destroy();
+      }
+    },
+
+    showPopover: function(e) {
+      var $bubble = $(e.currentTarget);
+      this._deactivate();
+
+      if (this.currentPopover && this.currentPopover.el === e.currentTarget) {
+        this.currentPopover = false;
+        return true;
+      }
+
+      this.$el.addClass('bubble-active');
+      $bubble.addClass('active');
+
+      this.currentPopover = new Views.Popover({
+        el: $bubble,
+        model: $bubble.data('model'),
+        template: this.popoverTemplate,
+      });
+      this.currentPopover.show();
+    }
+
+  });
+
+  Views.Popover = Backbone.View.extend({
+
+    initialize: function(options) {
+      this.template = this.options.template;
+      this.popover = new $.fn.popover.Constructor(this.el, {
+        content: this.render(),
+        trigger: options.trigger || 'click',
+        html: true,
+        template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><div></div></div></div></div>'
+      });
+    },
+
+    show: function() {
+      this.popover.show();
+    },
+
+    hide: function() {
+      this.popover.hide();
+    },
+
+    destroy: function() {
+      this.popover.destroy();
+    },
+
+    render: function() {
+      return this.template(this.model);
     }
 
   });

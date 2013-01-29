@@ -109,6 +109,24 @@
     </div>
   </div>
 
+  <script type="text/underscore-tmpl" id="member-popover-template">
+    <div class="member-popover">
+      <h3 class="name"><%= name %></h3>
+      <small class="party"><%= party %></small>
+
+      <div class="stats">
+        <div class="speeches">
+          # of Speeches<br>
+          <%= speeches %>
+        </div>
+        <div class="duration">
+          Spoke for approx.<br>
+          <%= durationString %>
+        </div>
+      </div>
+    </div>
+  </script>
+
   <!--[if lt IE 7]>
   <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
   <![endif]-->
@@ -121,6 +139,7 @@
   <script src="/components/marionette/lib/backbone.marionette.js"></script>
   <script src="/components/backbone.mutators/backbone.mutators.js"></script>
   <script src="/components/bootstrap/js/bootstrap-tooltip.js"></script>
+  <script src="/components/bootstrap/js/bootstrap-popover.js"></script>
   <script src="/components/bootstrap/js/bootstrap-dropdown.js"></script>
   <script src="/scripts/lib/bubble-chart.js"></script>
   <script src="/scripts/lib/selectr.js"></script>

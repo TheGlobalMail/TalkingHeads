@@ -14,5 +14,26 @@
     display: block;
     cursor: pointer;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    .transition(opacity 0.2s linear);
   }
+}
+
+#bubble-chart.bubble-active {
+  .bubble {
+    .opacity(50);
+    z-index: 1;
+  }
+
+  .bubble.active {
+    @border-size: 4px;
+    .opacity(100);
+    border: @border-size solid @white;
+    z-index: 3;
+    margin-top: -@border-size;
+    margin-left: -@border-size;
+  }
+}
+
+.member-popover {
+  color: #111;
 }

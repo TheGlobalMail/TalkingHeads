@@ -199,14 +199,15 @@
         .enter().append('a')
           .attr({
             'class': 'bubble',
-            role: 'listitem',
-            rel: 'tooltip',
-            title: function(d) { return d.name; }
+            role: 'listitem'
           })
           .style({
             width: function(d) { return d.radius + 'px'; },
             height: function(d) { return d.radius + 'px'; },
             'background-image': function(d) { return 'url(' + d.imageFull + ')'; }
+          }).
+          each(function(d) {
+            $.data(this, 'model', d);
           });
 
       this.$el.find('[rel=tooltip]').tooltip();

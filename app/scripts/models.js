@@ -13,6 +13,21 @@ TalkingHeads.module('Models', function(Models, TalkingHeads, Backbone) {
       imageFull: function() {
         this.image = this.image || '';
         return this.image.replace('.jpg', '_full.jpg')
+      },
+
+      durationString: function() {
+        var hours = Math.floor(this.duration / 60 / 60);
+        var minutes = Math.floor((this.duration / 60) % 60);
+
+        if (hours && minutes) {
+          return hours + 'h ' + minutes + 'm';
+        }
+
+        if (minutes) {
+          return minutes + 'm';
+        }
+
+        return hours + 'h';
       }
     }
 
