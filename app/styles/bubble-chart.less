@@ -38,17 +38,65 @@
   .border-radius(0);
   border: none;
 
+  .popover-content {
+    padding: 18px;
+  }
+
   .member-popover {
     color: #111;
 
     h3 {
       font-size:24px;
       font-weight: 800;
+      margin-top: 0;
       margin-bottom: 0;
     }
 
     small {
       color: @grayLight;
+    }
+
+    .stats {
+      font-size: 10px;
+      text-transform: uppercase;
+      color: @grayLight;
+      line-height: 1.05;
+      position: relative;
+      padding: 8px 0;
+      margin-top: 4px;
+      border-top: 1px solid @grayLighter;
+      border-bottom: 1px solid @grayLighter;
+
+        .number {
+          text-transform: none;
+          font-style: italic;
+        }
+        .right {
+          position: absolute;
+          top:8px;
+          left: 98px;
+        }
+
+      .speeches {
+        border-right: 1px solid @grayLighter;
+        width: 84px;
+
+        .number {
+          font-size:44px;
+          color: @grayDark;
+          font-weight: 800;
+          letter-spacing: -.05em;
+        }
+      }
+
+      .duration,
+      .interjections {
+        padding-bottom: 4px;
+        .number {
+          font-size:14px;
+          color: @gray;
+        }
+      }
     }
   }
 }
