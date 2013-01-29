@@ -152,8 +152,11 @@
       this._beforeRender();
       var div = d3.select(this.$el[0]);
 
+      if (this.bubbles) {
+        this.bubbles.remove();
+      }
+
       this.bubbles = div.selectAll('a.bubble').data(this.data, this.getId);
-      this.bubbles.exit().remove();
       this.bubbles
         .enter().append('a')
           .attr({
