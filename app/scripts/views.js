@@ -61,13 +61,19 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
     },
 
     initialize: function(options) {
+      _.bindAll(this);
+      this.$window = $(window);
       this.dfd = new $.Deferred();
+
+      this.$window.on('resize', this.resize);
 
       if (options.visited) {
         this.dfd.resolve();
       } else {
         this.show();
       }
+
+      this.resize();
     },
 
     show: function() {
@@ -78,6 +84,10 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
       this.$el.fadeOut('fast');
       monster.set('visited', true, 14);
       this.dfd.resolve();
+    },
+
+    resize: function() {
+      this.$el.height(this.$window.height());
     }
 
   });
