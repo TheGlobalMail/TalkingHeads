@@ -54,6 +54,34 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
 
   });
 
+  Views.Intro = Backbone.View.extend({
+
+    events: {
+      'click .close': 'close'
+    },
+
+    initialize: function(options) {
+      this.dfd = new $.Deferred();
+
+      if (options.visited) {
+        this.dfd.resolve();
+      } else {
+        this.show();
+      }
+    },
+
+    show: function() {
+      this.$el.attr('hidden', null).show();
+    },
+
+    close: function(e) {
+      this.$el.fadeOut('fast');
+      monster.set('visited', true, 14);
+      this.dfd.resolve();
+    }
+
+  });
+
   Views.Popover = Backbone.View.extend({
 
     initialize: function(options) {

@@ -1,11 +1,18 @@
 (function($, Backbone) {
   'use strict';
 
-  TalkingHeads.start();
+  TalkingHeads.addInitializer(function() {
+    var introView = new TalkingHeads.Views.Intro({ visited: monster.get('visited'), el: $('#intro') });
 
-  TalkingHeads.members.loaded(function() {
-    Backbone.history.start({ pushState: true });
+    $.when(TalkingHeads.members.promise, introView.dfd).then(function() {
+      Backbone.history.start({ pushState: true });
+    })
+    .fail(function() {
+      alert('An error has occured, try refreshing the page');
+    });
   });
+
+  TalkingHeads.start();
 
   // All navigation that is relative should be passed through the navigate
   // method, to be processed by the router. If the link has a `data-bypass`
