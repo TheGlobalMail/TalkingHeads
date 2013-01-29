@@ -101,10 +101,11 @@
 
     allGone: function() {
       this.data = [{
-        radius: 300,
-        forceR: 150,
+        radius: 464,
+        forceR: 464/2,
         imageFull: '/images/all_gone.jpg',
-        name: 'Awww no!'
+        name: 'Awww no!',
+        square: true
       }];
     },
 
@@ -118,7 +119,6 @@
       var alphaY = alpha / 1.3; // favor Y axis a tad
 
       return function(d) {
-        if (!d.x) { console.log(d); }
         d.x += (centerX - (d.x || 0)) * alphaX;
         d.y += (centerY - (d.y || 0)) * alphaY;
       };
@@ -134,7 +134,6 @@
           var y = d.y - d2.y;
           var distance = Math.sqrt(x*x + y*y);
           var minimumDistance = d.forceR + d2.forceR + this.options.collisionPadding;
-
 
           if (distance < minimumDistance) {
             distance = (distance - minimumDistance) / distance * this.options.jitter;
