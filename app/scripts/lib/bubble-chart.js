@@ -183,7 +183,7 @@
         } else {
           _setLeftAndTop(this, left, top);
         }
-      }
+      };
     },
 
     render: function() {

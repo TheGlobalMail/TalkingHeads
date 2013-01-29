@@ -109,7 +109,8 @@ module.exports = function( grunt ) {
           Modernizr: true,
           TalkingHeads: true,
           BubbleChart: true,
-          KeyValuePairParser: true
+          KeyValuePairParser: true,
+          monster: true
         }
       }
     },

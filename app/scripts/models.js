@@ -12,7 +12,7 @@ TalkingHeads.module('Models', function(Models, TalkingHeads, Backbone) {
 
       imageFull: function() {
         this.image = this.image || '';
-        return this.image.replace('.jpg', '_full.jpg')
+        return this.image.replace('.jpg', '_full.jpg');
       },
 
       durationString: function() {

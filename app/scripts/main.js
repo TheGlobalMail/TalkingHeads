@@ -8,7 +8,7 @@
       Backbone.history.start({ pushState: true });
     })
     .fail(function() {
-      alert('An error has occured, try refreshing the page');
+      window.alert('An error has occured, try refreshing the page');
     });
   });
 

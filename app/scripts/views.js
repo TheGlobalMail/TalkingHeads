@@ -47,7 +47,7 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
       this.currentPopover = new Views.Popover({
         el: $bubble,
         model: $bubble.data('model'),
-        template: this.popoverTemplate,
+        template: this.popoverTemplate
       });
       this.currentPopover.show();
     }
@@ -74,7 +74,7 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
       this.$el.attr('hidden', null).show();
     },
 
-    close: function(e) {
+    close: function() {
       this.$el.fadeOut('fast');
       monster.set('visited', true, 14);
       this.dfd.resolve();
@@ -208,7 +208,7 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
         var checked = _.contains(filters.party, $checkbox.val());
         $checkbox.prop('checked', checked);
         if (checked) {
-          $label.addClass('active')
+          $label.addClass('active');
         } else {
           $label.removeClass('active');
         }
