@@ -1,11 +1,13 @@
 TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
   'use strict';
 
+  var kvParser = window.KeyValuePairParser;
+
   Views.BubbleChart = Backbone.View.extend({
 
     initialize: function() {
       this.bubbleChart = new BubbleChart(this.el);
-      this.listenTo(this.collection, 'sort', this.render, this);
+      this.listenTo(this.collection, 'filter sort', this.render, this);
     },
 
     render: function() {
@@ -20,7 +22,9 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
   Views.ChartMode = Backbone.View.extend({
 
     initialize: function() {
+      this.$items = this.$('li a');
       this.listenTo(TalkingHeads.vent, 'chartMode', this.onChartMode, this);
+      this.listenTo(TalkingHeads.vent, 'filters', this.setFilters, this);
     },
 
     onChartMode: function(mode) {
@@ -32,6 +36,14 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
 
       $current.removeClass('active');
       this.$('.' + mode).addClass('active');
+    },
+
+    setFilters: function(filters) {
+      filters = kvParser.compile(filters);
+      _.each(this.$items, function(el) {
+        var mode = el.parentNode.className.split(' ')[0];
+        el.href = '/' + mode + '/' + filters;
+      }, this);
     }
 
   });
@@ -41,15 +53,24 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
   Views.DropdownFilter = Backbone.View.extend({
 
     events: {
-      'selectr:change': 'onSelect'
+      'selectr:change': 'updateSelected'
     },
 
     initialize: function() {
       this.$el.selectr();
+      this.updateSelected();
+      this.listenTo(TalkingHeads.vent, 'filters', this.setFilters, this);
     },
 
-    onSelect: function(e, value) {
-      TalkingHeads.vent.trigger('filter:' + this.options.eventName, value, e);
+    updateSelected: function() {
+      var send = {};
+      send[this.options.eventName] = this.$el.selectr().getValue();
+      TalkingHeads.vent.trigger('filter', send);
+    },
+
+    setFilters: function(filters) {
+      var selected = filters[this.options.eventName];
+      this.$el.selectr().setSelected(selected, true);
     }
 
   });
@@ -57,11 +78,12 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
   Views.PartyFilters = Backbone.View.extend({
 
     events: {
-      'change input': 'onChange'
+      'change input': 'updateActive'
     },
 
     initialize: function() {
       this.$labels = this.$('label');
+      this.listenTo(TalkingHeads.vent, 'filters', this.setFilters, this);
       this.updateActive();
     },
 
@@ -75,12 +97,22 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
           $label.removeClass('active');
         }
       });
+
+      var $checked = this.$(':checked');
+      var checked = [];
+
+      $checked.each(function() {
+        checked.push(this.value);
+      });
+
+      TalkingHeads.vent.trigger('filter', { 'party': checked });
     },
 
-    onChange: function(e) {
-      var checkbox = e.currentTarget;
-      this.updateActive();
-      TalkingHeads.vent.trigger('filter:party', checkbox.value, checkbox.checked);
+    setFilters: function(filters) {
+      this.$labels.each(function() {
+        var $checkbox = $(this).find('input');
+        $checkbox.prop('checked', _.contains(filters.party, $checkbox.val()));
+      });
     }
 
   });
@@ -92,10 +124,8 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
     });
 
     new Views.ChartMode({ el: $('#chart-modes') });
-
     new Views.DropdownFilter({ el: $('#filter-year'), eventName: 'year' });
     new Views.DropdownFilter({ el: $('#filter-house'), eventName: 'house' });
-
     new Views.PartyFilters({ el: $('#filter-party') });
   });
 });

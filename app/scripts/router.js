@@ -1,32 +1,61 @@
 TalkingHeads.module('Router', function(Router, TalkingHeads) {
   'use strict';
 
+  var kvParser = window.KeyValuePairParser;
+
   Router.Main = Backbone.Router.extend({
 
     routes: {
-      '': 'mostVocal',
-      'most-vocal(/:filters)': 'mostVocal',
-      'least-vocal(/:filters)': 'leastVocal',
-      'most-interjections(/:filters)': 'mostInterjections'
+      '': 'index',
+      'most-vocal(/*filters)': 'mostVocal',
+      'least-vocal(/*filters)': 'leastVocal',
+      'most-interjections(/*filters)': 'mostInterjections'
     },
 
     initialize: function(options) {
       this.collection = options.collection;
+      this.listenTo(TalkingHeads.vent, 'filters', this._setFilters, this);
     },
 
-    mostVocal: function() {
+    index: function() {
+      this.navigate('/most-vocal', { replace: true });
+      this.mostVocal();
+    },
+
+    mostVocal: function(filters) {
+      this._setMode('most-vocal');
+      this._processFilters(filters);
       this.collection.sortByMostVocal();
-      TalkingHeads.vent.trigger('chartMode', 'most-vocal');
     },
 
-    leastVocal: function() {
+    leastVocal: function(filters) {
+      this._setMode('least-vocal');
+      this._processFilters(filters);
       this.collection.sortByLeastVocal();
-      TalkingHeads.vent.trigger('chartMode', 'least-vocal');
     },
 
-    mostInterjections: function() {
+    mostInterjections: function(filters) {
+      this._setMode('most-interjections');
+      this._processFilters(filters);
       this.collection.sortByMostInterjections();
-      TalkingHeads.vent.trigger('chartMode', 'most-interjections');
+    },
+
+    _setFilters: function(filters) {
+      filters = kvParser.compile(filters);
+      this.navigate('/' + this.mode + '/' + filters);
+    },
+
+    _processFilters: function(filters) {
+      if (filters) {
+        // strip slashes (namely trailing slashes)
+        filters = kvParser.parse(filters.replace('/', ''));
+        TalkingHeads.vent.trigger('filter', filters);
+      }
+    },
+
+    _setMode: function(mode) {
+      this.mode = mode;
+      TalkingHeads.vent.trigger('chartMode', this.mode);
     }
 
   });

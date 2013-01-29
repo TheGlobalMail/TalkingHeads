@@ -108,7 +108,8 @@ module.exports = function( grunt ) {
           d3: true,
           Modernizr: true,
           TalkingHeads: true,
-          BubbleChart: true
+          BubbleChart: true,
+          KeyValuePairParser: true
         }
       }
     },
