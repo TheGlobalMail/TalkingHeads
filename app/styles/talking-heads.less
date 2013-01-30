@@ -50,15 +50,31 @@ body {
       margin-left: 20px;
     }
 
-    .icons {
-      display: block;
+    .till-hoger {
+      float: right;
       margin-right: 20px;
     }
+
+    .icons {
+      display: inline-block;
+      float: none;
+
+      :last-child {
+        float: none;
+        border-right: none;
+      }
+    }
+
+    .twitter-share-button {
+      top: 6px;
+      margin-left: 5px;
+    }
+
+    .fb-like {
+      margin-left: -25px;
+      top: 3px;
+    }
   }
-}
-
-.tools {
-
 }
 
 @border-color: rgba(255,255,255,0.2);
