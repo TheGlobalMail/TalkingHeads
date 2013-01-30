@@ -3,7 +3,7 @@
   "name": "myapp",
   "version": "0.0.0",
   "dependencies": {
-    "grunt-recess": "~0.2.0",
+    "grunt-recess": "0.3.0",
     "express": "~3.1.0",
     "cluster": "~0.7.7"
   },
