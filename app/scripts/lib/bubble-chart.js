@@ -101,8 +101,8 @@
 
     allGone: function() {
       this.data = [{
-        radius: 464,
-        forceR: 464/2,
+        radius: 475,
+        forceR: 475/2,
         imageFull: '/images/all_gone.jpg',
         name: 'Awww no!',
         square: true
