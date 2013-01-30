@@ -10,15 +10,19 @@
     initialize: function() {
       _.bindAll(this);
       this.$chart = $('#bubble-chart');
-      this.render();
+      this.listenTo(TalkingHeads.vent, 'chartRendered', this.onChartRendered, this);
+    },
+
+    onChartRendered: function(noData) {
+      this.noData = noData;
+      this.toggleKittenMode();
     },
 
     toggleKittenMode: function() {
-      if (this.isChecked()) {
-        this._showKittenMode();
-      } else {
-        this._hideKittenMode();
+      if (this.isChecked() && !this.noData) {
+        return this._showKittenMode();
       }
+      return this._hideKittenMode();
     },
 
     isChecked: function() {
@@ -30,7 +34,11 @@
 
       _.each(this.$bubbles, function(bubble, i) {
         var $bubble = $(bubble);
-        $bubble.data('orig-background-image', $bubble.css('background-image'))
+        var orig = $bubble.css('background-image');
+        if (_.contains(orig, 'all_gone')) {
+          return;
+        }
+        $bubble.data('orig-background-image', orig)
                .css('background-image', 'url(http://kittygen.herokuapp.com/?'+i+')');
       });
     },
@@ -43,7 +51,10 @@
 
     _hideKittenMode: function() {
       _.each(this.$bubbles, function(bubble) {
-        bubble.style.backgroundImage = $.data(bubble, 'orig-background-image');
+        var orig = $.data(bubble, 'orig-background-image');
+        if (orig) {
+          bubble.style.backgroundImage = orig;
+        }
       });
     }
 
