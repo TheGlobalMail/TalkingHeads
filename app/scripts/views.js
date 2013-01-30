@@ -83,7 +83,7 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
 
     close: function() {
       this.$el.fadeOut('fast');
-      // monster.set('visited', true, 14);
+      monster.set('visited', true, 14);
       this.dfd.resolve();
     },
 

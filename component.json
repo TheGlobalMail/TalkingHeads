@@ -5,10 +5,10 @@
   "version": "0.0.1",
   "dependencies": {
     "backbone": "~0.9.2",
-    "jquery": "~1.8.2",
+    "jquery": "1.9.0",
     "handlebars": "1.0.0-rc.1",
     "backbone.mutators": "latest",
-    "bootstrap": "2.2.1",
+    "bootstrap": "git://github.com/twitter/bootstrap.git",
     "lodash": "git://github.com/bestiejs/lodash.git#0.9.2",
     "tgm-bootstrap": "git@github.com:TheGlobalMail/tgm-bootstrap.git#0.1.8",
     "d3": "latest",

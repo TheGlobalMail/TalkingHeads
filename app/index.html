@@ -37,10 +37,10 @@
 
       <div class="till-hoger">
         <div class="icons" role="navigation">
-          <a class="about" href="#" data-target="#about-tool-modal" data-toggle="modal">About</a>
+          <a class="about" href="#about-modal" data-target="#about-modal" data-toggle="modal" data-bypass>About</a>
         </div>
 
-        <a href="https://twitter.com/share" class="twitter-share-button" data-text="Talking Heads" data-via="TheGlobalMail" data-hashtags="auspol">Tweet</a>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-text="Talking Heads" data-via="TheGlobalMail" data-hashtags="auspol" data-bypass>Tweet</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
         <div class="fb-like" data-send="false" data-layout="button_count" data-width="45" data-show-faces="false" data-colorscheme="light" data-action="like"></div>
@@ -173,6 +173,17 @@
     </div>
   </script>
 
+  <div class="modal hide fade" id="about-modal">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h3>Talking Heads</h3>
+    </div>
+
+    <div class="modal-body">
+      <p>Why? Because cats.</p>
+    </div>
+  </div>
+
   <!--[if lt IE 7]>
   <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
   <![endif]-->
@@ -188,6 +199,7 @@
   <script src="/components/bootstrap/js/bootstrap-tooltip.js"></script>
   <script src="/components/bootstrap/js/bootstrap-popover.js"></script>
   <script src="/components/bootstrap/js/bootstrap-dropdown.js"></script>
+  <script src="/components/bootstrap/js/bootstrap-modal.js"></script>
   <script src="/scripts/lib/bubble-chart.js"></script>
   <script src="/scripts/lib/selectr.js"></script>
   <script src="/scripts/lib/key-value-pair-parser.js"></script>
