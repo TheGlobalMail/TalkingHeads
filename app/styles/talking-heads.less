@@ -59,10 +59,16 @@ body {
     .icons {
       display: inline-block;
       float: none;
+      padding: 1px 0;
+
+      * {
+        cursor: pointer;
+      }
 
       :last-child {
         float: none;
         border-right: none;
+        margin-right: 0;
       }
     }
 
@@ -308,6 +314,10 @@ body {
     &:hover {
       background-color: rgba(214,90,53,.6);
     }
+}
+
+.modal .close {
+  z-index: 1060;
 }
 
 @import "bubble-chart.less";
