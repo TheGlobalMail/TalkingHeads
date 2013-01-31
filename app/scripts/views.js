@@ -119,31 +119,36 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
     initialize: function(options) {
       _.bindAll(this);
       this.$window = $(window);
+      this.$body = $(document.body);
       this.dfd = new $.Deferred();
-
-      this.$window.on('resize', this.resize);
 
       if (options.visited) {
         this.dfd.resolve();
       } else {
         this.show();
       }
-
-      this.resize();
     },
 
     show: function() {
       this.$el.attr('hidden', null).show();
+      $(document).on('touchmove.stop', function(e) { e.preventDefault(); });
+      this.$body.css({
+        height: this.$window.height(),
+        width: this.$window.width(),
+        overflow: 'hidden'
+      })
     },
 
     close: function() {
       this.$el.fadeOut('fast');
+      this.$body.css({
+        height: '',
+        width: '',
+        overflow: ''
+      });
+      $(document).off('.stop');
       monster.set('visited', true, 14);
       this.dfd.resolve();
-    },
-
-    resize: function() {
-      this.$el.height(this.$window.height());
     }
 
   });

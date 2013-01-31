@@ -1,11 +1,10 @@
 #intro {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   text-align: center;
-  width: 100%;
-  height: auto;
-  margin: 36px auto 0;
   background: #ff835e url('/images/orange-dots.png') 0 0 repeat;
   box-shadow: inset 0 0 500px #c24621;
   z-index: 1000;
@@ -13,10 +12,14 @@
   font-family: "Open Sans",Helvetica,Arial,sans-serif;
 
   .container {
-    position: relative;
-    margin: 25% auto;
-    text-align: center;
+    position: absolute;
     width: 900px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    margin-left: -450px;
+    margin-top: -150px;
+    text-align: center;
 
     h1 {
       position: relative;
