@@ -153,23 +153,21 @@
       <h3 class="name"><%= name %></h3>
       <small class="party"><%= party %></small>
 
-      <div class="stats">
+      <div class="stats clearfix">
         <div class="speeches">
           Speeches
           <div class="number"><%= speeches %></div>
         </div>
-        <div class="right">
-          <div class="duration">
-            Spoke for
-            <div class="number"><%= durationString %></div>
-          </div>
-          <div class="interjections">
-            Interjections
-            <div class="number"><%= interjections %></div>
-          </div>
+        <div class="duration">
+          Spoke for
+          <div class="number"><%= durationString %></div>
+        </div>
+        <div class="interjections">
+          Interjections
+          <div class="number"><%= interjections %></div>
         </div>
       </div>
-      <a href="<%= url %>">View profile on openaustralia.org</a>
+      <a href="<%= url %>" target="_blank">View profile on openaustralia.org</a>
     </div>
   </script>
 

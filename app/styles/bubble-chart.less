@@ -37,7 +37,7 @@
 .popover {
   .border-radius(0);
   border: none;
-  width: 266px;
+  width: 290px;
 
   .popover-content {
     padding: 18px;
@@ -74,20 +74,15 @@
       border-top: 1px solid @grayLighter;
       border-bottom: 1px solid @grayLighter;
 
-        .number {
-          text-transform: none;
-          font-style: italic;
-          font-weight: 700;
-          color: @grayDark;
-          font-size:18px;
-        }
-        .right {
-          top:-28px;
-          left: 54px;
-        }
+      .number {
+        text-transform: none;
+        font-style: italic;
+        font-weight: 700;
+        color: @grayDark;
+        font-size:18px;
+      }
 
-      .duration,
-      .interjections {
+      & > div {
         float: left;
         padding: 0 8px;
         border-left: 1px solid @grayLighter;
