@@ -29,11 +29,14 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
       this.$el.removeClass('bubble-active');
 
       if (this.currentPopover) {
+        this.currentPopover.off();
         this.currentPopover.destroy();
       }
     },
 
     showPopover: function(e) {
+      e.preventDefault();
+
       var $bubble = $(e.currentTarget);
       this._deactivate();
 
@@ -51,6 +54,58 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
         template: this.popoverTemplate
       });
       this.currentPopover.show();
+      this.currentPopover.once('closed', this._deactivate, this);
+    }
+
+  });
+
+  Views.Popover = Backbone.View.extend({
+
+    initialize: function(options) {
+      _.bindAll(this, '_escape');
+      this.template = this.options.template;
+      this.$window = $(window);
+      this.popover = new $.fn.popover.Constructor(this.el, {
+        content: this.render(),
+        trigger: options.trigger || 'click',
+        html: true,
+        template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><div></div></div></div></div>'
+      });
+    },
+
+    show: function() {
+      this.popover.show();
+      this.setupEscape();
+    },
+
+    hide: function() {
+      this.popover.hide();
+    },
+
+    setupEscape: function() {
+      this.$window.on('click keyup', this._escape);
+    },
+
+    _escape: function(e) {
+      var popover = this.popover.tip()[0];
+
+      var isPopoverClicked = $.contains(popover, e.target);
+      var isBubbleClicked  = e.target === this.el;
+      var isClickOrEscape  = e.type === 'click' || e.which === 27;
+
+      if (!isBubbleClicked && !isPopoverClicked && isClickOrEscape) {
+        this.hide();
+        this.trigger('closed');
+        this.$window.off('click keyup', this._escape);
+      }
+    },
+
+    destroy: function() {
+      this.popover.destroy();
+    },
+
+    render: function() {
+      return this.template(this.model);
     }
 
   });
@@ -89,36 +144,6 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
 
     resize: function() {
       this.$el.height(this.$window.height());
-    }
-
-  });
-
-  Views.Popover = Backbone.View.extend({
-
-    initialize: function(options) {
-      this.template = this.options.template;
-      this.popover = new $.fn.popover.Constructor(this.el, {
-        content: this.render(),
-        trigger: options.trigger || 'click',
-        html: true,
-        template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><div></div></div></div></div>'
-      });
-    },
-
-    show: function() {
-      this.popover.show();
-    },
-
-    hide: function() {
-      this.popover.hide();
-    },
-
-    destroy: function() {
-      this.popover.destroy();
-    },
-
-    render: function() {
-      return this.template(this.model);
     }
 
   });
