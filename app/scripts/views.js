@@ -132,15 +132,18 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
     show: function() {
       this.$el.attr('hidden', null).show();
       $(document).on('touchmove.stop', function(e) { e.preventDefault(); });
+
+      // prevent scroll
       this.$body.css({
         height: this.$window.height(),
         width: this.$window.width(),
         overflow: 'hidden'
-      })
+      });
     },
 
     close: function() {
       this.$el.fadeOut('fast');
+      // re-enable scroll
       this.$body.css({
         height: '',
         width: '',
