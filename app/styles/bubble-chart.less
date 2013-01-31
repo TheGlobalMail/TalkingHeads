@@ -3,7 +3,7 @@
   height: 780px;
   position: absolute;
   right: 0;
-  top: -100px;
+  top: -150px;
   z-index: 10;
 
   .bubble {
@@ -37,6 +37,7 @@
 .popover {
   .border-radius(0);
   border: none;
+  width: 266px;
 
   .popover-content {
     padding: 18px;
@@ -76,32 +77,20 @@
         .number {
           text-transform: none;
           font-style: italic;
+          font-weight: 700;
+          color: @grayDark;
+          font-size:18px;
         }
         .right {
-          position: absolute;
-          top:8px;
-          left: 98px;
+          top:-28px;
+          left: 54px;
         }
-
-      .speeches {
-        border-right: 1px solid @grayLighter;
-        width: 84px;
-
-        .number {
-          font-size:44px;
-          color: @grayDark;
-          font-weight: 800;
-          letter-spacing: -.05em;
-        }
-      }
 
       .duration,
       .interjections {
-        padding-bottom: 4px;
-        .number {
-          font-size:14px;
-          color: @gray;
-        }
+        float: left;
+        padding: 0 8px;
+        border-left: 1px solid @grayLighter;
       }
     }
   }
