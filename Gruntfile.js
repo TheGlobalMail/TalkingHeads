@@ -157,7 +157,7 @@ module.exports = function( grunt ) {
     },
 
     deploy: {
-      cdnUrl: 'http://talking-heads.cdn.rackspace.com/'
+      cdnUrl: 'http://talkingheads-assets.theglobalmail.org/'
     },
 
     // update references in HTML/CSS to revved files
