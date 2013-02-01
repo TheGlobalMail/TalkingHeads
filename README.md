@@ -12,3 +12,7 @@
 6. `yeoman server`
 7. Should have a server up n running on port 3501
 8. nom nom nom
+
+### Deploy
+
+`./deploy.js production RACKSPACE_API_KEY`
