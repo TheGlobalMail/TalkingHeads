@@ -156,6 +156,10 @@ module.exports = function( grunt ) {
       html: 'index.html'
     },
 
+    deploy: {
+      cdnUrl: 'http://talking-heads.cdn.rackspace.com/'
+    },
+
     // update references in HTML/CSS to revved files
     usemin: {
       html: ['index.html', 'scripts/*.js'],
