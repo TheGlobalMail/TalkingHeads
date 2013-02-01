@@ -39,7 +39,7 @@
           return;
         }
         $bubble.data('orig-background-image', orig)
-               .css('background-image', 'url(/images/kittys/'+(i+1)+'.jpg)');
+               .css('background-image', 'url(/images/kittys/'+i+'.jpg)');
       });
     },
 

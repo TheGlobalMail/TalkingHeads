@@ -145,7 +145,7 @@ module.exports = function( grunt ) {
     // renames JS/CSS to prepend a hash of their contents for easier
     // versioning
     rev: {
-      js: 'scripts/*.js',
+      js: 'scripts/**/*.js',
       css: 'styles/*.css',
       img: ['/images/**', 'components/tgm-bootstrap/img/*']
     },
@@ -184,7 +184,7 @@ module.exports = function( grunt ) {
 
     grunt.log.verbose.writeln('Update JavaScript with src attributes');
     content = grunt.helper('replace', content, /\.src=\\?['"]([^\\'"]+)\\?['"]/gm);
-    content = grunt.helper('replace', content, /avatarUrl:\\?['"]([^\\'"]+)\\?['"]/gm);
+    content = grunt.helper('replace', content, /url\(([^)]+)\)/gm);
 
     return content;
   });
