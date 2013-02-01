@@ -113,7 +113,8 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
       var placement = 'right';
       var $tip  = $(tip).renderOffscreen();
       var $el   = $(el);
-      var right = $el.offset().left + $el.outerWidth() + $tip.outerWidth() + 5;
+      // calculate the right side of the popover with some margin
+      var right = $el.offset().left + $el.outerWidth() + $tip.outerWidth() + 10;
 
       if (right >= document.documentElement.clientWidth) {
         placement = 'left';
