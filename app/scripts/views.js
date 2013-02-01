@@ -68,6 +68,7 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
       this.popover = new $.fn.popover.Constructor(this.el, {
         content: this.render(),
         trigger: options.trigger || 'click',
+        placement: this.placement,
         html: true,
         template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><div></div></div></div></div>'
       });
@@ -106,6 +107,19 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
 
     render: function() {
       return this.template(this.model);
+    },
+
+    placement: function(tip, el) {
+      var placement = 'right';
+      var $tip  = $(tip).renderOffscreen();
+      var $el   = $(el);
+      var right = $el.offset().left + $el.outerWidth() + $tip.outerWidth() + 5;
+
+      if (right >= document.documentElement.clientWidth) {
+        placement = 'left';
+      }
+
+      return placement;
     }
 
   });
