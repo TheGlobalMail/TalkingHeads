@@ -39,7 +39,7 @@
           return;
         }
         $bubble.data('orig-background-image', orig)
-               .css('background-image', 'url(http://kittygen.herokuapp.com/?'+i+')');
+               .css('background-image', 'url(/images/kittys/'+(i+1)+'.jpg)');
       });
     },
 
