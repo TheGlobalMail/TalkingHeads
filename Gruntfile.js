@@ -168,7 +168,7 @@ module.exports = function( grunt ) {
 
     grunt.log.verbose.writeln('Update kitteh mode!');
     var cdnUrl = grunt.config('deploy.cdnUrl').replace(/\/$/, '');
-    content = content.replace(/url\(\s*([^\)]+)\s*\)/gm, 'url(' + cdnUrl + '$1)');
+    content = content.replace("'url(/images/kittys/'+i+'.jpg)'", "'url(" + cdnUrl + "/images/kittys/'+i+'.jpg)'");
 
     return content;
   });
