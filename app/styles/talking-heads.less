@@ -316,8 +316,25 @@ body {
     }
 }
 
-.modal .close {
-  z-index: 1060;
+.modal {
+  p {
+    .font-size(14);
+    &.credits {
+      margin-top: 20px;
+      .font-size(12);
+      color: @grayLight;
+    }
+  }
+  .close {
+    z-index: 1060;
+  }
+  .modal-body, .modal-header {
+    padding:20px;
+  }
+  .modal-header {
+    padding-bottom: 0;
+  }
+
 }
 
 @import "bubble-chart.less";
