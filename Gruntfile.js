@@ -19,25 +19,6 @@ module.exports = function( grunt ) {
       dir: 'app/components'
     },
 
-    // Coffee to JS compilation
-    // handlebars: {
-    //   compile: {
-    //     files: {
-    //       "temp/modules/compiled-templates.js": [
-    //         "app/modules/*/templates/**/*.hbs"
-    //       ]
-    //     },
-    //     options: {
-    //       namespace: 'PolitalkApp.Templates',
-    //       processName: function(filename) {
-    //         return filename
-    //                 .replace(/^app\/modules\//, '')
-    //                 .replace(/\.hbs$/, '');
-    //       }
-    //     }
-    //   }
-    // },
-
     recess: {
       dist: {
         src: 'app/styles/main.less',
@@ -186,7 +167,8 @@ module.exports = function( grunt ) {
     content = grunt.helper('replace', content, /\.src=\\?['"]([^\\'"]+)\\?['"]/gm);
 
     grunt.log.verbose.writeln('Update kitteh mode!');
-    content = grunt.helper('replace', content, /url\(\s*([^\)]+)\s*\)/gm);
+    var cdnUrl = grunt.config('deploy.cdnUrl').replace(/\/$/, '');
+    content = content.replace(/url\(\s*([^\)]+)\s*\)/gm, 'url(' + cdnUrl + '$1)');
 
     return content;
   });
