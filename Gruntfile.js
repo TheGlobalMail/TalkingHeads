@@ -62,7 +62,8 @@ module.exports = function( grunt ) {
       files: [
         'Gruntfile.js',
         'app/scripts/**/*.js',
-        '!app/scripts/modernizr.js'
+        '!app/scripts/modernizr.js',
+        '!app/scripts/lib/jquery.xdr.js'
       ],
 
       options: {
@@ -169,7 +170,7 @@ module.exports = function( grunt ) {
     grunt.log.verbose.writeln('Update kitteh mode!');
     var cdnUrl = grunt.config('deploy.cdnUrl').replace(/\/$/, '');
     content = content.replace("'url(/images/kittys/'+i+'.jpg)'", "'url(" + cdnUrl + "/images/kittys/'+i+'.jpg)'");
-    content = content.replace("'/images/members/'", "'" + cdnUrl + "/images/members/'");
+    content = content.replace("/images/members/", cdnUrl + "/images/members/");
 
     return content;
   });

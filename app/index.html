@@ -197,12 +197,19 @@
     </div>
   </div>
 
-  <!--[if lt IE 7]>
+  <!--[if lt IE 8]>
   <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
   <![endif]-->
 
-  <!-- build:js /scripts/scripts.js -->
+  <!--[if lt IE 9]>
+  <!- build:js /scripts/ie-before.js -_->
+  <script src="/components/aight/aight.js"></script>
+  <!- endbuild -_->
+  <![endif]-->
+
+  <!-- build:js /scripts/libs.js -->
   <script src="/components/jquery/jquery.js"></script>
+  <script src="/scripts/lib/jquery.xdr.js"></script>
   <script src="/components/d3/d3.js"></script>
   <script src="/components/lodash/lodash.js"></script>
   <script src="/components/backbone/backbone.js"></script>
@@ -214,6 +221,15 @@
   <script src="/components/bootstrap/js/bootstrap-popover.js"></script>
   <script src="/components/bootstrap/js/bootstrap-dropdown.js"></script>
   <script src="/components/bootstrap/js/bootstrap-modal.js"></script>
+  <!-- endbuild -->
+
+  <!--[if lt IE 9]>
+  <!-- build:js /scripts/ie-after.js -_->
+  <script src="/components/aight/aight.d3.js"></script>
+  <!-- endbuild -_->
+  <![endif]-->
+
+  <!-- build:js /scripts/talking-heads.js -->
   <script src="/scripts/lib/render-offscreen.js"></script>
   <script src="/scripts/lib/modal-hack.js"></script>
   <script src="/scripts/lib/bubble-chart.js"></script>

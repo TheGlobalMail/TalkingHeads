@@ -34,7 +34,7 @@ TalkingHeads.module('Models', function(Models, TalkingHeads, Backbone) {
 
   Models.Members = Backbone.Collection.extend({
     model: Models.Member,
-    url: 'http://politalk-api.theglobalmail.org/api/members',
+    url: 'http://politalk-api.theglobalmail.org/api/members/year',
 
     speakerParties: [
       'PRES',
@@ -76,6 +76,7 @@ TalkingHeads.module('Models', function(Models, TalkingHeads, Backbone) {
         ],
         house: 0
       };
+      this.sortByMostVocal(); // default sorting
       this.promise = this.setFilters({});
     },
 
