@@ -205,8 +205,13 @@
             width: function(d) { return d.radius + 'px'; },
             height: function(d) { return d.radius + 'px'; },
             'background-image': function(d) { return 'url(' + d.imageFull + ')'; }
-          }).
-          each(function(d) {
+          })
+          .each(function(d) {
+            if (!Modernizr.backgroundsize && this.filters) {
+              var filter = this.filters.item("DXImageTransform.Microsoft.AlphaImageLoader");
+              filter.src = d.imageFull;
+              filter.sizingMethod = 'scale';
+            }
             $.data(this, 'model', d);
           });
 

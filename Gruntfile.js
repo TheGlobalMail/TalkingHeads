@@ -62,7 +62,8 @@ module.exports = function( grunt ) {
       files: [
         'Gruntfile.js',
         'app/scripts/**/*.js',
-        '!app/scripts/modernizr.js'
+        '!app/scripts/modernizr.js',
+        '!app/scripts/lib/jquery.xdr.js'
       ],
 
       options: {

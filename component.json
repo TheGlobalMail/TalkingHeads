@@ -13,6 +13,8 @@
     "tgm-bootstrap": "git@github.com:TheGlobalMail/tgm-bootstrap.git#0.1.8",
     "d3": "latest",
     "marionette": "latest",
-    "cookie-monster": "latest"
+    "cookie-monster": "latest",
+    "aight": "~1.0.3",
+    "es5-shim": "~2.0.5"
   }
 }

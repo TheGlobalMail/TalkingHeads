@@ -1,3 +1,19 @@
+
+.animation (@name) {
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-duration: 280ms;
+  -webkit-animation-name: @name;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-duration: 280ms;
+  -moz-animation-name: @name;
+  -o-animation-iteration-count: infinite;
+  -o-animation-duration: 280ms;
+  -o-animation-name: @name;
+  animation-iteration-count: infinite;
+  animation-duration: 280ms;
+  animation-name: @name;
+}
+
 #intro {
   position: fixed;
   top: 0;
@@ -69,21 +85,17 @@
       position: absolute;
       top: 79px;
       left: 43px;
-      -webkit-animation-duration: 0.28s;
-      -webkit-animation-name: juliaTalking;
-      -webkit-animation-iteration-count: infinite;
+      .animation(juliaTalking);
     }
 
     .abbotts-mouth {
       position: absolute;
       left: 35px;
       top: 85px;
-      -webkit-animation-duration: 0.30s;
-      -webkit-animation-name: abbottTalking;
-      -webkit-animation-iteration-count: infinite;
+      .animation(abbottTalking);
     }
 
-    @-webkit-keyframes juliaTalking {
+    .keyframesJuliaTalking() {
       from {
         top: 79px;
       }
@@ -97,7 +109,7 @@
       }
     }
 
-    @-webkit-keyframes abbottTalking {
+    .keyframesAbbottTalking() {
       from {
         top: 85px;
       }
@@ -110,6 +122,19 @@
         top: 85px;
       }
     }
+
+    @-webkit-keyframes juliaTalking { .keyframesJuliaTalking(); }
+    @-moz-keyframes juliaTalking { .keyframesJuliaTalking(); }
+    @-ms-keyframes juliaTalking { .keyframesJuliaTalking(); }
+    @-o-keyframes juliaTalking { .keyframesJuliaTalking(); }
+    @keyframes juliaTalking { .keyframesJuliaTalking(); }
+
+    @-webkit-keyframes abbottTalking { .keyframesAbbottTalking(); }
+    @-moz-keyframes abbottTalking { .keyframesAbbottTalking(); }
+    @-ms-keyframes abbottTalking { .keyframesAbbottTalking(); }
+    @-o-keyframes abbottTalking { .keyframesAbbottTalking(); }
+    @keyframes abbottTalking { .keyframesAbbottTalking(); }
+
     button.close {
       float: none;
       margin-top: 50px;
