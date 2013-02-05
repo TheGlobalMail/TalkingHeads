@@ -155,7 +155,7 @@ module.exports = function( grunt ) {
 
     // Optimizes JPGs and PNGs (with jpegtran & optipng)
     img: {
-      dist: '<config:rev.img>'
+      dist: ['images/**/*']
     }
 
   });
