@@ -19,6 +19,11 @@
 
     .lt-ie9 & {
       filter: ~"progid:DXImageTransform.Microsoft.AlphaImageLoader()";
+
+    }
+
+    &:hover {
+      .opacity(80);
     }
   }
 }
@@ -36,6 +41,16 @@
     z-index: 3;
     margin-top: -@border-size;
     margin-left: -@border-size;
+    &:after {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 28px;
+      position: absolute;
+      top:-8%;
+      right: 75%;
+      background: url(/images/bubble-close.png) no-repeat top right;
+    }
   }
 }
 

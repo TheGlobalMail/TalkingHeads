@@ -11,8 +11,7 @@ TalkingHeads.module('Models', function(Models, TalkingHeads, Backbone) {
       },
 
       imageFull: function() {
-        this.image = this.image || '';
-        return this.image.replace('.jpg', '_full.jpg');
+        return '/images/members/' + this.person_id + '_full.jpg';
       },
 
       durationString: function() {

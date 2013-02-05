@@ -30,11 +30,14 @@ body {
 
     p strong {
       display: block;
-      width: 400px;
-      line-height: 1.3;
-      .font-size(22);
-      font-weight: 200;
+      width: 320px;
+      line-height: 1.4;
+      .font-size(20);
+      font-weight: 600;
       z-index: 990;
+      em {
+        font-weight: 200;
+      }
     }
   }
 }
@@ -116,7 +119,7 @@ body {
 }
 
 #chart-modes {
-  margin-top: 40px;
+  margin-top: 20px;
   z-index: 990;
 
   ul {
@@ -314,8 +317,25 @@ body {
     }
 }
 
-.modal .close {
-  z-index: 1060;
+.modal {
+  p {
+    .font-size(14);
+    &.credits {
+      margin-top: 20px;
+      .font-size(12);
+      color: @grayLight;
+    }
+  }
+  .close {
+    z-index: 1060;
+  }
+  .modal-body, .modal-header {
+    padding:20px;
+  }
+  .modal-header {
+    padding-bottom: 0;
+  }
+
 }
 
 @import "bubble-chart.less";
