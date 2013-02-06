@@ -40,7 +40,7 @@ TalkingHeads.module('Views', function(Views, TalkingHeads, Backbone) {
       var $bubble = $(e.currentTarget);
       this._deactivate();
 
-      if (this.currentPopover && this.currentPopover.el === e.currentTarget) {
+      if (this.currentPopover && this.currentPopover.el === e.currentTarget || $bubble.data('model').square) {
         this.currentPopover = false;
         return true;
       }
