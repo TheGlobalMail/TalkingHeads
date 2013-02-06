@@ -49,6 +49,9 @@ TalkingHeads.module('Router', function(Router, TalkingHeads) {
       if (filters) {
         // strip slashes (namely trailing slashes)
         filters = kvParser.parse(filters.replace('/', ''));
+        if ('house' in filters) {
+          filters.house = parseInt(filters.house, 10);
+        }
         TalkingHeads.vent.trigger('filter', filters);
       }
     },
