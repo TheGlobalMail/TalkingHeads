@@ -14,7 +14,6 @@
     "d3": "latest",
     "marionette": "latest",
     "cookie-monster": "latest",
-    "aight": "~1.0.3",
     "es5-shim": "~2.0.5"
   }
 }
