@@ -29,7 +29,7 @@
       jitter: 0.45,
 
       // smallest bubble in pixels
-      minimumBubbleSize: 35,
+      minimumBubbleSize: 40,
 
       // largest bubble in pixels
       maximumBubbleSize: 140,
@@ -80,9 +80,15 @@
         return this.allGone();
       }
 
+      var lengthScaler = d3.scale.linear()
+        .domain([1, this.options.bubblesToShow])
+        .range([0.05, 1])
+        .clamp(true)
+        (this.data.length);
+
       // now the data is sorted and truncated, figure out the size scale
       this.dataToRadiusScale
-        .exponent(this.options.dataToRadiusFactor)
+        .exponent(1)
         .domain([
           // sorted descendingly, so last is lowest
           this.getValue(_.last(this.data)), // lowest value
@@ -91,12 +97,28 @@
         .range([
           this.options.minimumBubbleSize,
           this.options.maximumBubbleSize
-        ]);
+        ]).clamp(true);
+
+      // calculate the sum of all the radi
+      var radi = _.reduce(this.data, function(memo, d) {
+        return memo + this.dataToRadiusScale(this.getValue(d));
+      }, 0, this);
+
+      // scale the
+      var radiusManipulator = 3800 / radi * lengthScaler;
 
       _.each(this.data, function(d) {
-        d.radius = this.dataToRadiusScale(this.getValue(d));
+        d.radius = Math.min(this.options.maximumBubbleSize * 1.5, this.dataToRadiusScale(this.getValue(d)) * radiusManipulator);
         d.forceR = d.radius / 2;
       }, this);
+    },
+
+    _getAverage: function() {
+      var total = _.reduce(this.data, function(accumulator, d) {
+        return accumulator + this.getValue(d);
+      }, 0, this);
+
+      return total / this.data.length;
     },
 
     allGone: function() {
@@ -116,7 +138,7 @@
       var centerY = this.options.height / 2;
 
       var alphaX = alpha;
-      var alphaY = alpha / 1.3; // favor Y axis a tad
+      var alphaY = alpha / 1.5; // favor Y axis a tad
 
       return function(d) {
         d.x += (centerX - (d.x || 0)) * alphaX;
@@ -214,8 +236,6 @@
             }
             $.data(this, 'model', d);
           });
-
-      this.$el.find('[rel=tooltip]').tooltip();
 
       this.force.start();
     },
