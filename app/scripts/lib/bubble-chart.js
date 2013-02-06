@@ -81,8 +81,8 @@
       }
 
       var lengthScaler = d3.scale.linear()
-        .domain([1, this.options.bubblesToShow])
-        .range([0.05, 1])
+        .domain([1, 40])
+        .range([0.15, 1])
         .clamp(true)
         (this.data.length);
 
@@ -105,10 +105,10 @@
       }, 0, this);
 
       // scale the
-      var radiusManipulator = 3800 / radi * lengthScaler;
+      var radiusManipulator = 3600 / radi * lengthScaler;
 
       _.each(this.data, function(d) {
-        d.radius = Math.min(this.options.maximumBubbleSize * 1.5, this.dataToRadiusScale(this.getValue(d)) * radiusManipulator);
+        d.radius = Math.min(this.options.maximumBubbleSize * 1.3, this.dataToRadiusScale(this.getValue(d)) * radiusManipulator);
         d.forceR = d.radius / 2;
       }, this);
     },
