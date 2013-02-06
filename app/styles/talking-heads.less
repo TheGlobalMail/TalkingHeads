@@ -378,4 +378,67 @@ body {
 
 }
 
+#ie {
+  z-index: 99999;
+  position: fixed;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-top: 10%;
+  color: @white;
+  background: #ff835e url('/images/orange-dots.png') 0 0 repeat;
+  text-align: center;
+  .container {
+    width: 700px;
+    margin: 0 auto 10px;
+    padding:230px 0;
+    background: url('/images/ie-bg.png') center center no-repeat;
+    h3 {
+    font-weight: normal;
+    line-height: 1.2;
+    margin-bottom: 40px;
+
+      strong {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      a {
+        color: white;
+        font-style: italic;
+        text-decoration: underline;
+      }
+    }
+    a.close {
+      float: none;
+      margin-top: 50px;
+      width: 290px;
+      font-size: 14px;
+      border: 1px solid rgba(255,255,255,.6);
+      padding: 10px;
+      margin: 0 auto;
+      color: white;
+      text-transform: uppercase;
+      text-shadow: none;
+      .opacity(100);
+      .border-radius(4px);
+      -webkit-transition: background 100ms ease-out;
+      -moz-transition: background 100ms ease-out;
+      -ms-transition: background 100ms ease-out;
+      -o-transition: background 100ms ease-out;
+      transition: background 100ms ease-out;
+
+      &:hover {
+        background-color: rgba(255,255,255,.1);
+        -webkit-transition: background 100ms ease-out;
+        -moz-transition: background 100ms ease-out;
+        -ms-transition: background 100ms ease-out;
+        -o-transition: background 100ms ease-out;
+        transition: background 100ms ease-out;
+      }
+    }
+  }
+}
+
 @import "bubble-chart.less";
