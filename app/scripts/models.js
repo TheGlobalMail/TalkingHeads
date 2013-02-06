@@ -184,8 +184,7 @@ TalkingHeads.module('Models', function(Models, TalkingHeads, Backbone) {
     // create a year range for the REST API
     _getYearRange: function(year) {
       return {
-        from: year + '-01-01',
-        to: year + '-12-31'
+        from: year + '-01-01'
       };
     }
 
