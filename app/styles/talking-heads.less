@@ -303,19 +303,25 @@ body {
 }
 
 #kitten-mode {
-  margin-top: 80px;
-  margin-bottom: 40px;
+  // margin-top: 80px;
+  // margin-bottom: 40px;
+  position: fixed;
+  bottom: 0;
+  height: 22px;
+  left: 0;
   .opacity(100);
-  background: rgba(214,90,53,.4) url(/images/icons.png) no-repeat 6px -153px;
+  background: transparent url(/images/icons.png) no-repeat 6px -153px;
   border: none;
-  border-top: 1px solid #d65a35;
+  // border-top: 1px solid #d65a35;
   font-size: 10px;
   padding: 6px 10px 6px 30px;
     input {
       top: 5px;
+      display: none;
     }
     &:hover {
-      background-color: rgba(214,90,53,.6);
+      .opacity(60);
+      // background-color: rgba(214,90,53,.6);
     }
 }
 
