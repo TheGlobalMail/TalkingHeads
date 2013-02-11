@@ -1,18 +1,19 @@
 .animation (@name) {
+  @timing-func: cubic-bezier(.41,.44,.66,.81);
   -webkit-animation-iteration-count: infinite;
-  -webkit-animation-timing-function: linear;
+  -webkit-animation-timing-function: @timing-func;
   -webkit-animation-duration: 1s;
   -webkit-animation-name: @name;
   -moz-animation-iteration-count: infinite;
-  -moz-animation-timing-function: linear;
+  -moz-animation-timing-function: @timing-func;
   -moz-animation-duration: 1s;
   -moz-animation-name: @name;
   -o-animation-iteration-count: infinite;
-  -o-animation-timing-function: linear;
+  -o-animation-timing-function: @timing-func;
   -o-animation-duration: 1s;
   -o-animation-name: @name;
   animation-iteration-count: infinite;
-  animation-timing-function: linear;
+  animation-timing-function: @timing-func;
   animation-duration: 1s;
   animation-name: @name;
 }
