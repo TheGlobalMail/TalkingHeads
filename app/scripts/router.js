@@ -43,6 +43,7 @@ TalkingHeads.module('Router', function(Router, TalkingHeads) {
     _setFilters: function(filters) {
       filters = kvParser.compile(filters);
       this.navigate('/' + this.mode + '/' + filters);
+      TalkingHeads.vent.trigger('route');
     },
 
     _processFilters: function(filters) {
