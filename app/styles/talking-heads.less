@@ -1,7 +1,7 @@
 * { position: relative; }
 
-body, html {
-  background-color: #343539;
+body {
+
 }
 
 .top {
@@ -174,7 +174,6 @@ body, html {
       background-position: 0 -77px;
       .opacity(20);
     }
-
     &.active a,
     &.most-vocal.active:after,
     &.least-vocal.active:after,
@@ -292,9 +291,9 @@ body, html {
   }
 
   &.active {
-    .opacity(100);
-    border-top: 1px solid @border-color;
-  }
+      .opacity(100);
+      border-top: 1px solid @border-color;
+    }
 
   &:first-child {
     border-top: none;
@@ -307,66 +306,86 @@ body, html {
   }
 }
 
-#footer {
-  #gradient.vertical-three-colors(#222,#333,4%,#343539);
-  color: #a4a4a5;
-  padding: 20px 0 40px;
-  text-shadow: 0 -1px 1px #111;
-
-  a {
-    color: white;
-  }
-
-  .credit {
-    margin-top: 10px;
-    float: right;
-    font-size: 80%;
-    padding: 0 0 20px 20px;
-
-    p {
-      float: left;
-      width: 270px;
-      .font-size(12);
+#kitten-mode {
+  // margin-top: 80px;
+  // margin-bottom: 40px;
+  position: fixed;
+  bottom: 0;
+  height: 22px;
+  // left: 0;
+  .opacity(100);
+  background: transparent url(/images/icons.png) no-repeat 6px -153px;
+  border: none;
+  // border-top: 1px solid #d65a35;
+  font-size: 10px;
+  padding: 6px 10px 6px 30px;
+    input {
+      top: 5px;
+      display: none;
     }
+    &:hover {
+      .opacity(60);
+      // background-color: rgba(214,90,53,.6);
+    }
+}
+
+#footer {
+    #gradient.vertical-three-colors(#222,#333,4%,#343539);
+    color: #a4a4a5;
+    padding: 20px 0 40px;
+    text-shadow: 0 -1px 1px #111;
 
     a {
-      display: block;
-      .font-size(22);
-      font-weight: 400;
-      line-height: .9;
-      padding-bottom: 4px;
-
-      &.tgm {
-        text-indent: -9000px;
-        background: transparent url(/images/footer-logo.png) 0 0 no-repeat;
-        margin-bottom: 20px;
-      }
+        color: white;
     }
-  }
+
+    .credit {
+        margin-top: 10px;
+        float: right;
+        font-size: 80%;
+        padding: 0 0 20px 20px;
+
+        p {
+          float: left;
+          width: 270px;
+          .font-size(12);
+        }
+
+        a {
+            display: block;
+            .font-size(22);
+            font-weight: 400;
+            line-height: .9;
+            padding-bottom: 4px;
+
+            &.tgm {
+                text-indent: -9000px;
+                background: transparent url(/images/footer-logo.png) 0 0 no-repeat;
+                margin-bottom: 20px;
+            }
+        }
+    }
 }
 
 .modal {
   p {
     .font-size(14);
-
     &.credits {
       margin-top: 20px;
       .font-size(12);
       color: @grayLight;
     }
   }
-
   .close {
     z-index: 1060;
   }
-
   .modal-body, .modal-header {
     padding:20px;
   }
-
   .modal-header {
     padding-bottom: 0;
   }
+
 }
 
 #ie {
