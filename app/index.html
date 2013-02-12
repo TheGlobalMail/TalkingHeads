@@ -16,6 +16,15 @@
   <!-- build:css /styles/main.css -->
   <link rel="stylesheet" href="/styles/main.css">
   <!-- endbuild -->
+
+  <meta property="og:title" content="Talking Heads - The quietest, noisiest, the most argumentative ministers in Parliament.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://partylines.theglobalmail.org/">
+  <meta property="fb:admins" content="1196962639">
+  <meta property="fb:admins" content="100004512551022">
+  <meta property="og:image" content="http://talkingheads-assets.theglobalmail.org/images/share-avatar-th.jpg">
+  <meta property="og:site_name" content="Talking Heads">
+
   <!-- build:js /scripts/head.js -->
   <script src="/scripts/modernizr.js"></script>
   <!-- endbuild -->
@@ -40,10 +49,13 @@
           <a class="about" href="#about-modal" data-target="#about-modal" data-toggle="modal" data-bypass>About</a>
         </div>
 
-        <a href="https://twitter.com/share" class="twitter-share-button" data-text="Talking Heads" data-via="TheGlobalMail" data-hashtags="auspol" data-bypass>Tweet</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        <div class="share-button twitter">
+          <a href="https://twitter.com/share" class="twitter-share-button-template" data-text="Talking Heads" data-via="TheGlobalMail" data-hashtags="auspol" data-bypass>Tweet</a>
+        </div>
 
-        <div class="fb-like" data-send="false" data-layout="button_count" data-width="45" data-show-faces="false" data-colorscheme="light" data-action="like"></div>
+        <div class="share-button facebook">
+          <div class="fb-like" data-send="false" data-layout="button_count" data-width="45" data-show-faces="false" data-colorscheme="light" data-action="like"></div>
+        </div>
       </div>
     </div>
   </header>
@@ -213,6 +225,17 @@
   </style>
   <![endif]-->
 
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27879276-8']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
 
   <!--[if gte IE 9]><!-->
   <!-- build:js /scripts/libs.js -->
@@ -221,6 +244,7 @@
   <script src="/components/d3/d3.js"></script>
   <script src="/components/lodash/lodash.js"></script>
   <script src="/components/backbone/backbone.js"></script>
+  <script src="/components/backbone.analytics/backbone.analytics.js"></script>
   <script src="/components/cookie-monster/dist/monster.js"></script>
   <script src="/components/marionette/lib/backbone.marionette.js"></script>
   <script src="/components/backbone.mutators/backbone.mutators.js"></script>
@@ -243,20 +267,9 @@
   <script src="/scripts/views.js"></script>
   <script src="/scripts/router.js"></script>
   <script src="/scripts/kitten-mode.js"></script>
+  <script src="/scripts/social-buttons.js"></script>
   <script src="/scripts/main.js"></script>
   <!-- endbuild -->
   <!--<![endif]-->
-
-  <script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-27879276-8']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-  </script>
 </body>
 </html>

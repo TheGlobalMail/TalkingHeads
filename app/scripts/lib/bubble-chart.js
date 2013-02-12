@@ -188,8 +188,7 @@
 
     _setTranslate3d: function(el, left, top) {
       var translate = 'translate3d(' + left + ',' + top + ',0)';
-      el.style.webkitTransform = translate;
-      el.style.transform = translate;
+      el.style.transform = el.style.MozTransform = el.style.webkitTransform = translate;
     },
 
     setBubblePosition: function() {
