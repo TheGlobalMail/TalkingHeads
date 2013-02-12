@@ -19,14 +19,14 @@
       if (pair.indexOf(settings.keyValueDelimiter) !== -1) {
         pair  = pair.split(settings.keyValueDelimiter);
         key   = pair[0];
-        value = pair[1].split(settings.arrayValueDelimiter);
+        value = decodeURI(pair[1]).split(settings.arrayValueDelimiter);
 
         if (value.length === 1) {
           value = value[0];
         }
       }
 
-      params[key] = decodeURI(value);
+      params[key] = value;
     });
 
     return params;
