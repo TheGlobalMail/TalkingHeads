@@ -41,6 +41,10 @@
         $bubble.data('orig-background-image', orig)
                .css('background-image', 'url(/images/kittys/'+i+'.jpg)');
       });
+
+      if ('_gaq' in window) {
+        window._gaq.push(['_trackPageview', '/kitten-mode']);
+      }
     },
 
     serializeData: function() {
