@@ -14,11 +14,16 @@
     var params = {};
 
     _.each(pairs, function(pair) {
-      pair = pair.split(settings.keyValueDelimiter);
-      var key = pair[0];
-      var value = pair[1].split(settings.arrayValueDelimiter);
-      if (value.length === 1) {
-        value = value[0];
+      var key = pair, value = '';
+
+      if (pair.indexOf(settings.keyValueDelimiter) !== -1) {
+        pair  = pair.split(settings.keyValueDelimiter);
+        key   = pair[0];
+        value = pair[1].split(settings.arrayValueDelimiter);
+
+        if (value.length === 1) {
+          value = value[0];
+        }
       }
 
       params[key] = decodeURI(value);
@@ -34,6 +39,7 @@
       if (_.isArray(value)) {
         value = value.join(settings.arrayValueDelimiter);
       }
+
       pairs.push(key + settings.keyValueDelimiter + value);
     });
 

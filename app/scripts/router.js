@@ -50,9 +50,22 @@ TalkingHeads.module('Router', function(Router, TalkingHeads) {
       if (filters) {
         // strip slashes (namely trailing slashes)
         filters = kvParser.parse(filters.replace('/', ''));
+
         if ('house' in filters) {
           filters.house = parseInt(filters.house, 10);
         }
+
+        // party should always be an array
+        if (_.has(filters, 'party') && !_.isArray(filters.party)) {
+          if (filters.party) {
+            // single non-empty value
+            filters.party = [filters.party];
+          } else {
+            // empty value
+            filters.party = [];
+          }
+        }
+
         TalkingHeads.vent.trigger('filter', filters);
       }
     },
