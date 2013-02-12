@@ -54,16 +54,27 @@ body {
 .navbar {
   z-index: 1001;
   margin: 0;
+  min-width: 940px;
 
   .tgm-strip {
+
+    text-align: center;
+    position: relative;
+
     .tgm {
       background-size: contain;
-      margin-left: 20px;
+      height: 32px;
+      width: 390px;
+      margin: 13px auto 1px;
+      background: url(/images/tgm-strip-logo.png) no-repeat top center;
     }
 
     .till-hoger {
-      float: right;
+      position: absolute;
+      right: 0;
+      top: 5px;
       margin-right: 20px;
+      color: @grayLight;
 
       .share-button {
         display: inline-block;
